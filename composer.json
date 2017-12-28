@@ -1,6 +1,6 @@
 {
-    "name": "uctoplus/uctoplus-invoiceing-php",
-    "description": "Fakturačný systém | Účto+ ",
+    "name": "mimographix/uctoplus-invoiceing-php",
+    "description": "PHP API pre Fakturačný systém | Účto+",
     "license": "MIT",
     "authors": [
         {
