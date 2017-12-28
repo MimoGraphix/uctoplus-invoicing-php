@@ -1,0 +1,20 @@
+{
+    "name": "uctoplus/uctoplus-invoiceing-php",
+    "description": "Fakturačný systém | Účto+ ",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "MimoGraphix",
+            "email": "mimographix@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Uctoplus\\API\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6.4"
+    }
+}
