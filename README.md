@@ -8,7 +8,7 @@ You can install this package quick and easy with Composer.
 
 Require the package via Composer:
 
-    $ composer require uctoplus/uctoplus-invoiceing-php
+    $ composer require mimographix/uctoplus-invoiceing-php
 
 ### Laravel 5 Framework Implementation
 
@@ -22,7 +22,11 @@ Open your Laravel config file `config/app.php` and add service provider in the `
 
         'Uctoplus\API\InvoiceProvider'
 
-    ),
+    ), 
+
+Publish configuration into `config` folder
+
+    php artisan vendor:publish --provider="Uctoplus\API\InvoiceProvider"
   
 
 ## Usage with Laravel

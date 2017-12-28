@@ -15,8 +15,8 @@ class UctoplusInvoiceingRepository
     /**
      * Účto+ API URL
      */
-    // const API_URL = 'https://api.uctoplus.sk/api/v1/invoiceing';
-    const API_URL = 'http://localhost/laravel/uctujto/public/api/v1/invoiceing';
+    const API_URL = 'https://www.uctoplus.sk/api/v1/invoiceing';
+
     /**
      * IČO
      *
@@ -46,6 +46,14 @@ class UctoplusInvoiceingRepository
      */
     public function __construct( $ico = null, $apiKey = null )
     {
+        if( $ico == null && $apiKey == null && function_exists( 'config' ) )
+        {
+            $this->ico = config( 'invoiceing.ico' );
+            $this->apiKey = config( 'invoiceing.apiKey' );
+
+            return ;
+        }
+
         $this->ico = $ico;
         $this->apiKey = $apiKey;
     }

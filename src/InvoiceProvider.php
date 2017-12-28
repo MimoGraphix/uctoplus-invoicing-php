@@ -22,7 +22,6 @@ class InvoiceProvider extends ServiceProvider
         $configPath = __DIR__ . '/../config/invoiceing.php';
         $this->mergeConfigFrom($configPath, 'invoiceing');
         $this->publishes([$configPath => config_path('invoiceing.php')], 'config');
-
     }
 
     /**
