@@ -18,7 +18,7 @@ $invoice->setReciever( new \Uctoplus\API\Models\Address( "Calculon 1, s.r.o", "h
 $invoice->generateInvoiceNumberByCounter( 17 );
 $invoice->setPaymentType( 11 );
 $invoice->setIssuer( 'Mário Čechovič', 'mimographix@gmail.com' );
-$invoice->addItem( new \Uctoplus\API\Models\InvoiceItem( "Ceruzka", "50", "1.5" ) );
+$invoice->addItem( new \Uctoplus\API\Models\Item( "Ceruzka", "50", "1.5" ) );
 $invoice->setPriceOff( 10 );
 
 var_dump( $invoiceRepo->saveInvoice() );

@@ -12,208 +12,54 @@ class Invoice extends ApiModel
     const TYPE_PROFORMA_INVOICE = 2;
     const TYPE_VAT_PROOF = 6;
 
+    const ATTR_INVOICE_NUMBER = "invoice_number";
+    const ATTR_INVOICE_NUMBER_COUNTER = "invoice_counter_id";
+    const ATTR_INVOICE_TYPE = "invoice_type_id";
+
+    const ATTR_DESCRIPTION = "popis";
+
+    const ATTR_DATE_ISSUED = "datum_vystavenia";
+    const ATTR_DATE_DELIVERY = "datum_dodania";
+    const ATTR_DATE_DUE = "datum_splatnosti";
+
+    const ATTR_SYMBOL_VARIABLE = "variabilny_symbol";
+    const ATTR_SYMBOL_SPECIFIC = "specificky_symbol";
+    const ATTR_SYMBOL_CONSTANT = "konstantny_symbol";
+
+    const ATTR_NOTE_1 = "invoice_note_1";
+    const ATTR_NOTE_2 = "invoice_note_2";
+//    const ATTR_NOTE_3 = "invoice_note_3";
+
+    const ATTR_LOGO_ID = "logo_version_id";
+    const ATTR_SIGNATURE_ID = "signature_version_id";
+    const ATTR_CURRENCY_CODE = "currency";
+    const ATTR_PAYMENT_TYPE_ID = "forma_uhrady_id";
+    const ATTR_DELIVERY_TYPE_ID = "sposob_dodania_id";
+    const ATTR_INTERNAL_NUMBER = "cislo_objednavky";
+
+    const ATTR_LANGUAGE_CODE = "language";
+
+    const ATTR_ISSUER_NAME = "issuer_name";
+    const ATTR_ISSUER_PHONE = "issuer_phone";
+    const ATTR_ISSUER_WEB = "issuer_web";
+    const ATTR_ISSUER_EMAIL = "issuer_email";
+
+    const ATTR_PRICE_OFF_VALUE = "zlava";
+    const ATTR_FLAG_TRANSFER_VAT = "flag_prenesenie_dph";
+
+    const ATTR_ALREADY_PAYED = "flag_zaplatene";
+    const ATTR_PAYED_PRICE = "zaplatena_suma";
+    const ATTR_PAYED_DATE = "zaplatena_datum";
+
     /**
      * @var integer|null
      */
     private $_id = null;
 
     /**
-     * @var string|null
-     */
-    private $invoice_number = null;
-
-    /**
-     * @var integer|null
-     */
-    private $invoice_counter_id = null;
-
-    /**
-     * @var Address
-     */
-    private $spolocnost;
-
-    /**
-     * @var Address|null
-     */
-    private $dodacia_adresa = null;
-
-    /**
-     * @var SmallCarbon|null
-     */
-    private $datum_vystavenia = null;
-
-    /**
-     * @var SmallCarbon|null
-     */
-    private $datum_dodania = null;
-
-    /**
-     * @var SmallCarbon|null
-     */
-    private $datum_splatnosti = null;
-
-    /**
-     * @var integer|null
-     */
-    private $variabilny_symbol = null;
-
-    /**
-     * @var integer|null
-     */
-    private $konstantny_symbol = null;
-
-    /**
-     * @var integer|null
-     */
-    private $specificky_symbol = null;
-
-    /**
-     * @var string|null
-     */
-    private $popis = null;
-
-    /**
-     * @var string|null
-     */
-    private $invoice_note_1 = null;
-
-    /**
-     * @var string|null
-     */
-    private $invoice_note_2 = null;
-
-    /**
-     * @var string|null
-     */
-    private $invoice_note_3 = null;
-
-    /**
-     * @var integer
-     */
-    private $forma_uhrady_id = null;
-
-    /**
-     * @var integer|null
-     */
-    private $sposob_dodania_id = null;
-
-    /**
-     * @var string|null
-     */
-    private $language = null;
-
-    /**
-     * @var integer|null
-     */
-    private $cislo_objednavky = null;
-
-    /**
-     * @var integer|null
-     */
-    private $min_payment_limit = null;
-
-    /**
-     * @var integer
-     */
-    private $invoice_type_id = null;
-
-    /**
-     * @var integer|null
-     */
-    private $logo_version_id = null;
-
-    /**
-     * @var integer|null
-     */
-    private $invoice_template_id = null;
-
-    /**
-     * @var integer|null
-     */
-    private $signature_version_id = null;
-    /**
-     * @var string|null
-     */
-    private $currency = null;
-
-    /**
-     * @var string|null
-     */
-    private $issuer_name = null;
-
-    /**
-     * @var string|null
-     */
-    private $issuer_phone = null;
-
-    /**
-     * @var string|null
-     */
-    private $issuer_web = null;
-
-    /**
-     * @var string|null
-     */
-    private $issuer_email = null;
-
-    /**
-     * @var integer
-     */
-    private $zlava = 0;
-
-    /**
-     * @var bool
-     */
-    private $flag_prenesenie_dph = false;
-
-    /**
-     * @var bool
-     */
-    private $flag_zaplatene = false;
-
-    /**
-     * @var integer|null
-     */
-    private $zaplatena_suma = null;
-
-    /**
-     * @var SmallCarbon|null
-     */
-    private $zaplatena_datum = null;
-
-    /**
-     * @var array
-     */
-    private $items = array();
-
-    /**
      * @var string
      */
     private $_file_url = null;
-
-    /**
-     * Invoice constructor.
-     *
-     * @param int $invoice_type_id
-     * @param null|string $popis
-     * @param null|string $language
-     * @param null|string $currency
-     */
-    public function __construct( $invoice_type_id = Invoice::TYPE_INVOICE, $popis = null, $language = null, $currency = null )
-    {
-        $this->invoice_type_id = $invoice_type_id;
-        $this->popis = $popis;
-        $this->language = $language;
-        $this->currency = $currency;
-
-        $this->datum_vystavenia = new SmallCarbon();
-        $this->datum_splatnosti = ( new SmallCarbon() )->addDays(14);
-
-        if( $invoice_type_id == Invoice::TYPE_INVOICE )
-        {
-            $this->datum_dodania = new SmallCarbon();
-        }
-    }
 
     /**
      * @param integer $invoice_type_id
@@ -226,36 +72,6 @@ class Invoice extends ApiModel
         {
             $this->datum_dodania = null;
         }
-    }
-
-    /**
-     * @param SmallCarbon|integer|string $datum_vystavenia
-     * @param SmallCarbon|integer|string $datum_splatnosti
-     * @param SmallCarbon|integer|string|null $datum_dodania
-     */
-    public function setDates( $datum_vystavenia, $datum_splatnosti, $datum_dodania = null )
-    {
-        $this->datum_vystavenia = new SmallCarbon( $datum_vystavenia );
-        $this->datum_splatnosti = new SmallCarbon( $datum_splatnosti );
-
-        if( $datum_dodania != null )
-            $this->datum_dodania = new SmallCarbon( $datum_dodania );
-    }
-
-    /**
-     * @param InvoiceItem $item
-     */
-    public function addItem( InvoiceItem $item )
-    {
-        $this->items[] = $item;
-    }
-
-    /**
-     * @return array
-     */
-    public function getItems()
-    {
-        return $this->items;
     }
 
     /**
@@ -273,119 +89,12 @@ class Invoice extends ApiModel
     }
 
     /**
-     * @param double $value
-     * @param SmallCarbon|integer|string $date
-     */
-    public function setAsPayed( $value = null, $date = null )
-    {
-        $this->flag_zaplatene = true;
-        $this->zaplatena_suma = $value;
-        $this->zaplatena_datum = new SmallCarbon( $date );
-    }
-
-    /**
      * @param integer $counterId
      */
     public function generateInvoiceNumberByCounter( $counterId )
     {
         $this->invoice_number = null;
         $this->invoice_counter_id = $counterId;
-    }
-
-    /**
-     * @param string $invoice_number
-     */
-    public function setCustomInvoiceNumber( $invoiceNumber )
-    {
-        $this->invoice_number = $invoiceNumber;
-        $this->invoice_counter_id = null;
-    }
-
-    /**
-     * @param integer $paymentTypeId
-     */
-    public function setPaymentType( $paymentTypeId )
-    {
-        $this->forma_uhrady_id = $paymentTypeId;
-    }
-
-    /**
-     * @param integer $deliveryTypeId
-     * @param Address|null $deliveryAddress
-     */
-    public function setDeliveryType( $deliveryTypeId, Address $deliveryAddress = null )
-    {
-        $this->sposob_dodania_id = $deliveryTypeId;
-        $this->dodacia_adresa = $deliveryAddress;
-    }
-
-    /**
-     * @param Address $reciever
-     * @param bool $vatTransfer
-     */
-    public function setReciever( Address $reciever, $vatTransfer = false )
-    {
-        $this->spolocnost = $reciever;
-        $this->flag_prenesenie_dph = $vatTransfer;
-    }
-
-    /**
-     * @param integer $id
-     */
-    public function setLogo( $id )
-    {
-        $this->logo_version_id = $id;
-    }
-
-    /**
-     * @param integer $id
-     */
-    public function setSignature( $id )
-    {
-        $this->signature_version_id = $id;
-    }
-
-    /**
-     * @param integer $symbol
-     */
-    public function setVariabilnySymbol( $symbol )
-    {
-        $this->variabilny_symbol = $symbol;
-    }
-
-    /**
-     * @param integer $symbol
-     */
-    public function setSpecifickySymbol( $symbol )
-    {
-        $this->specificky_symbol = $symbol;
-    }
-
-    /**
-     * @param integer $symbol
-     */
-    public function setKonstantnySymbol( $symbol )
-    {
-        $this->konstantny_symbol = $symbol;
-    }
-
-    /**
-     * @param $text
-     * @param $position
-     */
-    public function setNote( $text, $position = 3 )
-    {
-        $note_id = "invoice_note_" . $position;
-
-        $this->$note_id = $text;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function setPriceOff( $price_off = 0 )
-    {
-        $this->zlava = $price_off;
     }
 
     public function handleResponseData($responseData)
@@ -411,4 +120,23 @@ class Invoice extends ApiModel
         return $this->variabilny_symbol;
     }
 
+    public function toArray()
+	{
+		$array = [
+			Invoice::ATTR_INVOICE_TYPE => Invoice::TYPE_INVOICE,
+			Invoice::ATTR_LANGUAGE_CODE => config( 'uctoplus.default_language' ),
+			Invoice::ATTR_CURRENCY_CODE => config( 'uctoplus.default_currency' ),
+			Invoice::ATTR_LOGO_ID => config( 'uctoplus.default_logo_id' ),
+			Invoice::ATTR_SIGNATURE_ID => config( 'uctoplus.default_signature_id' ),
+			Invoice::ATTR_PAYMENT_TYPE_ID => config( 'uctoplus.default_payment_type_id' ),
+			Invoice::ATTR_DELIVERY_TYPE_ID => config( 'uctoplus.default_delivery_type_id' ),
+			Invoice::ATTR_INVOICE_NUMBER_COUNTER => config( 'uctoplus.default_counters.' . ( $this->invoice_type_id == null ? Invoice::TYPE_INVOICE : $this->invoice_type_id ) ),
+			Invoice::ATTR_ISSUER_NAME => config( 'uctoplus.issuer_name' ),
+			Invoice::ATTR_ISSUER_PHONE => config( 'uctoplus.issuer_phone' ),
+			Invoice::ATTR_ISSUER_WEB => config( 'uctoplus.issuer_web' ),
+			Invoice::ATTR_ISSUER_EMAIL => config( 'uctoplus.issuer_email' ),
+			Invoice::ATTR_FLAG_TRANSFER_VAT => 0,
+		];
+		return array_merge( $array, parent::toArray() ); // TODO: Change the autogenerated stub
+	}
 }

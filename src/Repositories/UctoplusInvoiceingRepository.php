@@ -8,14 +8,19 @@
 
 namespace Uctoplus\API;
 
+use Uctoplus\API\Models\Address;
 use Uctoplus\API\Models\Invoice;
+use Uctoplus\API\Models\Item;
+use Uctoplus\API\Support\Arrayable;
+use Uctoplus\API\Support\Collection;
 
 class UctoplusInvoiceingRepository
 {
     /**
      * Účto+ API URL
      */
-    const API_URL = 'https://www.uctoplus.sk/api/v1/invoiceing';
+    // const API_URL = 'https://www.uctoplus.sk/api/v1/invoiceing';
+    const API_URL = 'http://localhost/uctujto/public/api/v1/invoiceing';
 
     /**
      * IČO
@@ -34,9 +39,21 @@ class UctoplusInvoiceingRepository
     /**
      * Invoice to generate
      *
-     * @var Models\Invoice
+     * @var Invoice
      */
     protected $invoice;
+    /**
+     * Invoice to generate
+     *
+     * @var Address
+     */
+    protected $client;
+    /**
+     * Invoice to generate
+     *
+     * @var Collection
+     */
+    protected $invoiceItems;
 
     /**
      * Constructor
@@ -46,16 +63,23 @@ class UctoplusInvoiceingRepository
      */
     public function __construct( $ico = null, $apiKey = null )
     {
-        if( $ico == null && $apiKey == null && function_exists( 'config' ) )
-        {
-            $this->ico = config( 'invoiceing.ico' );
-            $this->apiKey = config( 'invoiceing.apiKey' );
+		$this->invoiceItems = new Collection();
 
-            return ;
-        }
+		if( $apiKey != null && $ico != null )
+		{
+			$this->apiKey = $apiKey;
+			$this->ico = $ico;
+			return;
+		}
 
-        $this->ico = $ico;
-        $this->apiKey = $apiKey;
+		if(  $apiKey == null && $ico == null  && function_exists( 'config' ) )
+		{
+			$this->apiKey = config( 'uctoplus.api_key' );
+			$this->ico = config( 'uctoplus.ico' );
+			return ;
+		}
+
+		throw new \Exception( 'Please set APIKey and Company ICO' );
     }
 
     private function _generateURL( $url )
@@ -63,23 +87,38 @@ class UctoplusInvoiceingRepository
         return UctoplusInvoiceingRepository::API_URL . "/" . $url;
     }
 
-    public function getInvoice()
+	public function setInvoice( $values )
+	{
+		if( is_array( $values ) )
+			$this->invoice = new Invoice( $values );
+		elseif( $values instanceof Invoice )
+			$this->invoice = $values;
+		else
+			throw new \Exception( '$values must be array or instance of Invoice' );
+	}
+
+	public function addItem( $values )
+	{
+		if( is_array( $values ) )
+			$this->invoiceItems[] = new Item( $values );
+		elseif( $values instanceof Item )
+			$this->invoiceItems[] = $values;
+		else
+			throw new \Exception( '$values must be array or instance of Item' );
+	}
+
+	public function setClient( $values )
+	{
+		if( is_array( $values ) )
+			$this->client = new Address( $values );
+		elseif( $values instanceof Address )
+			$this->client = $values;
+		else
+			throw new \Exception( '$values must be array or instance of Client' );
+	}
+
+    public function save()
     {
-        if( $this->invoice == null )
-            $this->invoice = new Invoice();
-
-        return $this->invoice;
-    }
-
-    public function saveInvoice()
-    {
-        // The data to send to the API
-        $postData = array(
-            'ico' => $this->ico,
-            'apiKey' =>  $this->apiKey,
-            'invoice' => $this->invoice->toArray(),
-        );
-
         // Setup cURL
         $ch = curl_init($this->_generateURL( 'create-new-invoice' ));
         curl_setopt_array($ch, array(
@@ -88,7 +127,7 @@ class UctoplusInvoiceingRepository
             CURLOPT_HTTPHEADER => array(
                 'Content-Type: application/json'
             ),
-            CURLOPT_POSTFIELDS => json_encode( $postData )
+            CURLOPT_POSTFIELDS => $this->toJson()
         ));
 
         // Send the request
@@ -120,6 +159,23 @@ class UctoplusInvoiceingRepository
             throw new \Exception( $value );
         }
         else
-            throw new \Exception( $responseData['message'] );
+            throw new \Exception( "ERROR: " . $responseData['message'] );
     }
+
+	public function toJson()
+	{
+		return json_encode( $this->toArray() );
+	}
+
+	public function toArray()
+	{
+		return array(
+			'ico' => $this->ico,
+            'apiKey' =>  $this->apiKey,
+			"invoice" => $this->invoice instanceof Arrayable ? $this->invoice->toArray() : $this->invoice,
+			"client" => $this->client instanceof Arrayable ? $this->client->toArray() : $this->client,
+			"items" => $this->invoiceItems->toArray(),
+		);
+	}
+
 }
