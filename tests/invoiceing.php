@@ -13,11 +13,11 @@ $invoiceRepo = new UctoplusInvoiceingRepository( "12345678", "10c3d4b-c66bd81-2f
 
 $invoice = $invoiceRepo->getInvoice();
 $invoice->setInvoiceType( \Uctoplus\API\Models\Invoice::TYPE_PROFORMA_INVOICE );
-$invoice->setReciever( new \Uctoplus\API\Models\Address( "Calculon 1, s.r.o", "hovno", "kokot", "12345" ) );
+$invoice->setReciever( new \Uctoplus\API\Models\Address( "uctoplus.sk, s.r.o", "Lošonec 94", "Lošonec", "12345" ) );
 //$invoice->setCustomInvoiceNumber( "FA001" );
 $invoice->generateInvoiceNumberByCounter( 17 );
 $invoice->setPaymentType( 11 );
-$invoice->setIssuer( 'Mário Čechovič', 'mimographix@gmail.com' );
+$invoice->setIssuer( 'Jozef Mrkvička', 'faktury@uctoplus.sk' );
 $invoice->addItem( new \Uctoplus\API\Models\Item( "Ceruzka", "50", "1.5" ) );
 $invoice->setPriceOff( 10 );
 
