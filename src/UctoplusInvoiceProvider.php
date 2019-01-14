@@ -20,9 +20,9 @@ class UctoplusInvoiceProvider extends ServiceProvider
      */
     public function boot( )
     {
-        $configPath = __DIR__ . '/../config/invoiceing.php';
-        $this->mergeConfigFrom($configPath, 'invoiceing');
-        $this->publishes([$configPath => config_path('invoiceing.php')], 'config');
+		$this->publishes([
+            __DIR__ . '/../config'=> base_path('config'),
+        ], 'config');
     }
 
     /**
