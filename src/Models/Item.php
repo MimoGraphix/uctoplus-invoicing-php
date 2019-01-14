@@ -3,7 +3,10 @@
 namespace Uctoplus\API\Models;
 
 /**
- * Class InvoiceItem
+ * Class Item
+ *
+ * @author MimoGraphix <mimographix@gmail.com>
+ * @copyright EpicFail | Studio
  * @package Uctoplus\API\Models
  */
 class Item extends ApiModel
@@ -16,6 +19,6 @@ class Item extends ApiModel
 	const ATTR_PRICE_WITH_TAX = "price_with_tax";
 	const ATTR_TAX_VALUE = "tax_value";
 	const ATTR_TYPE = "type";
-	const ATTR_PRICE_OFF = "price_off";
+	const ATTR_DISCOUNT = "price_off";
 
 }

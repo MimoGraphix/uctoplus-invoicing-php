@@ -2,6 +2,13 @@
 
 namespace Uctoplus\API\Support;
 
+/**
+ * Interface Arrayable
+ *
+ * @author MimoGraphix <mimographix@gmail.com>
+ * @copyright EpicFail | Studio
+ * @package Uctoplus\API\Support
+ */
 interface Arrayable
 {
     /**

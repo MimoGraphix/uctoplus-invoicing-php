@@ -1,16 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mariocechovic
- * Date: 28/12/2017
- * Time: 13:16
- */
 
 namespace Uctoplus\API;
 
 use Illuminate\Support\ServiceProvider;
 
-class InvoiceProvider extends ServiceProvider
+/**
+ * Class UctoplusInvoiceProvider
+ *
+ * @author MimoGraphix <mimographix@gmail.com>
+ * @copyright EpicFail | Studio
+ * @package Uctoplus\API
+ */
+class UctoplusInvoiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.

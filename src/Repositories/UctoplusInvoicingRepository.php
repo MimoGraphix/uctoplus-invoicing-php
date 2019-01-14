@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mariocechovic
- * Date: 28/12/2017
- * Time: 13:18
- */
 
 namespace Uctoplus\API;
 
@@ -14,13 +8,27 @@ use Uctoplus\API\Models\Item;
 use Uctoplus\API\Support\Arrayable;
 use Uctoplus\API\Support\Collection;
 
-class UctoplusInvoiceingRepository
+/**
+ * Class UctoplusInvoicingRepository
+ *
+ * @author MimoGraphix <mimographix@gmail.com>
+ * @copyright EpicFail | Studio
+ * @package Uctoplus\API
+ */
+class UctoplusInvoicingRepository
 {
     /**
      * Účto+ API URL
      */
-    // const API_URL = 'https://www.uctoplus.sk/api/v1/invoiceing';
-    const API_URL = 'http://localhost/uctujto/public/api/v1/invoiceing';
+    const API_URL = 'https://moje.uctoplus.sk/api/v1/invoicing';
+//    const API_URL = 'http://localhost/uctujto/public/api/v1/invoiceing';
+
+    /**
+     * API url
+     *
+     * @var string
+     */
+    protected $apiUrl;
 
     /**
      * IČO
@@ -42,12 +50,14 @@ class UctoplusInvoiceingRepository
      * @var Invoice
      */
     protected $invoice;
+
     /**
      * Invoice to generate
      *
      * @var Address
      */
     protected $client;
+
     /**
      * Invoice to generate
      *
@@ -61,12 +71,13 @@ class UctoplusInvoiceingRepository
      * @param string $ico
      * @param string $apiKey
      */
-    public function __construct( $ico = null, $apiKey = null )
+    public function __construct( $apiUrl = null, $ico = null, $apiKey = null )
     {
 		$this->invoiceItems = new Collection();
 
 		if( $apiKey != null && $ico != null )
 		{
+			$this->apiUrl = $apiUrl;
 			$this->apiKey = $apiKey;
 			$this->ico = $ico;
 			return;
@@ -74,6 +85,7 @@ class UctoplusInvoiceingRepository
 
 		if(  $apiKey == null && $ico == null  && function_exists( 'config' ) )
 		{
+    		$this->apiUrl = config( 'uctoplus.api_url' );
 			$this->apiKey = config( 'uctoplus.api_key' );
 			$this->ico = config( 'uctoplus.ico' );
 			return ;
@@ -84,9 +96,14 @@ class UctoplusInvoiceingRepository
 
     private function _generateURL( $url )
     {
-        return UctoplusInvoiceingRepository::API_URL . "/" . $url;
+        return $this->apiUrl . "/" . $url;
     }
 
+	/**
+	 * @param array|Invoice $values
+	 *
+	 * @throws \Exception
+	 */
 	public function setInvoice( $values )
 	{
 		if( is_array( $values ) )
@@ -94,9 +111,14 @@ class UctoplusInvoiceingRepository
 		elseif( $values instanceof Invoice )
 			$this->invoice = $values;
 		else
-			throw new \Exception( '$values must be array or instance of Invoice' );
+			throw new \Exception( '\$values must be array or instance of Invoice' );
 	}
 
+	/**
+	 * @param array|Item $values
+	 *
+	 * @throws \Exception
+	 */
 	public function addItem( $values )
 	{
 		if( is_array( $values ) )
@@ -104,9 +126,14 @@ class UctoplusInvoiceingRepository
 		elseif( $values instanceof Item )
 			$this->invoiceItems[] = $values;
 		else
-			throw new \Exception( '$values must be array or instance of Item' );
+			throw new \Exception( '\$values must be array or instance of Item' );
 	}
 
+	/**
+	 * @param array|Address $values
+	 *
+	 * @throws \Exception
+	 */
 	public function setClient( $values )
 	{
 		if( is_array( $values ) )
@@ -114,7 +141,7 @@ class UctoplusInvoiceingRepository
 		elseif( $values instanceof Address )
 			$this->client = $values;
 		else
-			throw new \Exception( '$values must be array or instance of Client' );
+			throw new \Exception( '\$values must be array or instance of Client' );
 	}
 
     public function save()

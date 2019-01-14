@@ -5,12 +5,19 @@ namespace Uctoplus\API\Support;
 use Countable;
 use ArrayAccess;
 use Traversable;
+use JsonSerializable;
 use ArrayIterator;
 use CachingIterator;
-use JsonSerializable;
 use IteratorAggregate;
 use InvalidArgumentException;
 
+/**
+ * Class Collection
+ *
+ * @author MimoGraphix <mimographix@gmail.com>
+ * @copyright EpicFail | Studio
+ * @package Uctoplus\API\Support
+ */
 class Collection implements ArrayAccess, Arrayable, Countable, IteratorAggregate, Jsonable, JsonSerializable
 {
     /**

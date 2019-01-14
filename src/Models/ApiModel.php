@@ -9,6 +9,9 @@ use Uctoplus\API\Support\Jsonable;
 
 /**
  * Class ApiModel
+ *
+ * @author MimoGraphix <mimographix@gmail.com>
+ * @copyright EpicFail | Studio
  * @package Uctoplus\API\Models
  */
 abstract class ApiModel implements ArrayAccess, Arrayable, Jsonable, JsonSerializable

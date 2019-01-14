@@ -4,6 +4,9 @@ namespace Uctoplus\API\Models;
 
 /**
  * Class Address
+ *
+ * @author MimoGraphix <mimographix@gmail.com>
+ * @copyright EpicFail | Studio
  * @package Uctoplus\API\Models
  */
 class Address extends ApiModel

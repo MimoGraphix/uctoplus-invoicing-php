@@ -1,22 +1,114 @@
 <?php
 
 return [
-    "api_key" => 'app',
-	"ico" => 'app',
-	"default_language" => 'sk',
-	"default_currency" => 'EUR',
-	"default_logo_id" => null,
-	"default_signature_id" => null,
-	"default_counters" => [
-		\Uctoplus\API\Models\Invoice::TYPE_INVOICE => null,
-		\Uctoplus\API\Models\Invoice::TYPE_PROFORMA_INVOICE => null,
-	],
-	"default_payment_type_id" => null,
-	"default_delivery_type_id" => null,
-	"default_issuer" => [
-		"issuer_name" => null,
-		"issuer_web" => null,
-		"issuer_email" => null,
-		"issuer_phone" => null
+
+	/*
+    |--------------------------------------------------------------------------
+    | Api URL
+    |--------------------------------------------------------------------------
+    |
+    | Url for Api Connection
+    */
+    "api_url" => \Uctoplus\API\UctoplusInvoicingRepository::API_URL,
+
+	/*
+    |--------------------------------------------------------------------------
+    | Api Key
+    |--------------------------------------------------------------------------
+    |
+    | Api Key for specific company from Uctoplus.sk
+    */
+    "api_key" => null,
+
+	/*
+    |--------------------------------------------------------------------------
+    | Company Identification Number
+    |--------------------------------------------------------------------------
+    |
+    | Company Identification Number for validating against API_KEY
+    */
+	"ico" => null,
+
+	"defaults" => [
+
+		/*
+		|--------------------------------------------------------------------------
+		| Language
+		|--------------------------------------------------------------------------
+		|
+		| Default values for Language Code
+		*/
+		"language" => 'sk',
+
+		/*
+		|--------------------------------------------------------------------------
+		| Currency Code
+		|--------------------------------------------------------------------------
+		|
+		| Default values for Currency Code
+		*/
+		"currency" => 'EUR',
+
+		/*
+		|--------------------------------------------------------------------------
+		| Logo ID
+		|--------------------------------------------------------------------------
+		|
+		| Default values for Logo ID
+		*/
+		"logo_id" => null,
+
+		/*
+		|--------------------------------------------------------------------------
+		| Signature ID
+		|--------------------------------------------------------------------------
+		|
+		| Default values for Signature ID
+		*/
+		"signature_id" => null,
+
+		/*
+		|--------------------------------------------------------------------------
+		| Counter
+		|--------------------------------------------------------------------------
+		|
+		| Default values for Invoice number Counters by Invoice Types
+		*/
+		"counters" => [
+			\Uctoplus\API\Models\Invoice::TYPE_INVOICE => null,
+			\Uctoplus\API\Models\Invoice::TYPE_PROFORMA_INVOICE => null,
+		],
+
+		/*
+		|--------------------------------------------------------------------------
+		| Payment Type ID
+		|--------------------------------------------------------------------------
+		|
+		| Default values for Payment ID
+		*/
+		"payment_type_id" => null,
+
+		/*
+		|--------------------------------------------------------------------------
+		| Delivery Type ID
+		|--------------------------------------------------------------------------
+		|
+		| Default values for  Delivery Type ID
+		*/
+		"delivery_type_id" => null,
+
+		/*
+		|--------------------------------------------------------------------------
+		| Issuer
+		|--------------------------------------------------------------------------
+		|
+		| Default values for Invoice Issuer person
+		*/
+		"issuer" => [
+			"name" => null,
+			"web" => null,
+			"email" => null,
+			"phone" => null
+		],
 	],
 ];
