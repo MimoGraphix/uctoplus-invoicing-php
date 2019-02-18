@@ -1,6 +1,6 @@
 <?php
 /**
- * Address
+ * ErrorModel
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \MimoGraphix\Uctoplus\ObjectSerializer;
 
 /**
- * Address Class Doc Comment
+ * ErrorModel Class Doc Comment
  *
  * @category Class
  * @package  MimoGraphix\Uctoplus
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Address implements ModelInterface, ArrayAccess
+class ErrorModel implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Address implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Address';
+    protected static $openAPIModelName = 'ErrorModel';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,13 +57,9 @@ class Address implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'street' => 'string',
-        'city' => 'string',
-        'country' => 'string',
-        'sk_ico' => 'int',
-        'sk_dic' => 'int',
-        'vat' => 'string'
+        'status' => 'bool',
+        'message' => 'string',
+        'code' => 'int'
     ];
 
     /**
@@ -72,13 +68,9 @@ class Address implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'street' => null,
-        'city' => null,
-        'country' => null,
-        'sk_ico' => 'int32',
-        'sk_dic' => 'int32',
-        'vat' => null
+        'status' => null,
+        'message' => null,
+        'code' => 'int32'
     ];
 
     /**
@@ -108,13 +100,9 @@ class Address implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'street' => 'street',
-        'city' => 'city',
-        'country' => 'country',
-        'sk_ico' => 'sk_ico',
-        'sk_dic' => 'sk_dic',
-        'vat' => 'vat'
+        'status' => 'status',
+        'message' => 'message',
+        'code' => 'code'
     ];
 
     /**
@@ -123,13 +111,9 @@ class Address implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'street' => 'setStreet',
-        'city' => 'setCity',
-        'country' => 'setCountry',
-        'sk_ico' => 'setSkIco',
-        'sk_dic' => 'setSkDic',
-        'vat' => 'setVat'
+        'status' => 'setStatus',
+        'message' => 'setMessage',
+        'code' => 'setCode'
     ];
 
     /**
@@ -138,13 +122,9 @@ class Address implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'street' => 'getStreet',
-        'city' => 'getCity',
-        'country' => 'getCountry',
-        'sk_ico' => 'getSkIco',
-        'sk_dic' => 'getSkDic',
-        'vat' => 'getVat'
+        'status' => 'getStatus',
+        'message' => 'getMessage',
+        'code' => 'getCode'
     ];
 
     /**
@@ -207,13 +187,9 @@ class Address implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['street'] = isset($data['street']) ? $data['street'] : null;
-        $this->container['city'] = isset($data['city']) ? $data['city'] : null;
-        $this->container['country'] = isset($data['country']) ? $data['country'] : 'SVK';
-        $this->container['sk_ico'] = isset($data['sk_ico']) ? $data['sk_ico'] : null;
-        $this->container['sk_dic'] = isset($data['sk_dic']) ? $data['sk_dic'] : null;
-        $this->container['vat'] = isset($data['vat']) ? $data['vat'] : 'null';
+        $this->container['status'] = isset($data['status']) ? $data['status'] : false;
+        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
+        $this->container['code'] = isset($data['code']) ? $data['code'] : null;
     }
 
     /**
@@ -225,15 +201,20 @@ class Address implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['message'] === null) {
+            $invalidProperties[] = "'message' can't be null";
         }
-        if ($this->container['street'] === null) {
-            $invalidProperties[] = "'street' can't be null";
+        if ($this->container['code'] === null) {
+            $invalidProperties[] = "'code' can't be null";
         }
-        if ($this->container['city'] === null) {
-            $invalidProperties[] = "'city' can't be null";
+        if (($this->container['code'] > 600)) {
+            $invalidProperties[] = "invalid value for 'code', must be smaller than or equal to 600.";
         }
+
+        if (($this->container['code'] < 100)) {
+            $invalidProperties[] = "invalid value for 'code', must be bigger than or equal to 100.";
+        }
+
         return $invalidProperties;
     }
 
@@ -250,169 +231,81 @@ class Address implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets name
+     * Gets status
+     *
+     * @return bool|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param bool|null $status status
+     *
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets message
      *
      * @return string
      */
-    public function getName()
+    public function getMessage()
     {
-        return $this->container['name'];
+        return $this->container['message'];
     }
 
     /**
-     * Sets name
+     * Sets message
      *
-     * @param string $name name
+     * @param string $message message
      *
      * @return $this
      */
-    public function setName($name)
+    public function setMessage($message)
     {
-        $this->container['name'] = $name;
+        $this->container['message'] = $message;
 
         return $this;
     }
 
     /**
-     * Gets street
+     * Gets code
      *
-     * @return string
+     * @return int
      */
-    public function getStreet()
+    public function getCode()
     {
-        return $this->container['street'];
+        return $this->container['code'];
     }
 
     /**
-     * Sets street
+     * Sets code
      *
-     * @param string $street street
+     * @param int $code code
      *
      * @return $this
      */
-    public function setStreet($street)
+    public function setCode($code)
     {
-        $this->container['street'] = $street;
 
-        return $this;
-    }
+        if (($code > 600)) {
+            throw new \InvalidArgumentException('invalid value for $code when calling ErrorModel., must be smaller than or equal to 600.');
+        }
+        if (($code < 100)) {
+            throw new \InvalidArgumentException('invalid value for $code when calling ErrorModel., must be bigger than or equal to 100.');
+        }
 
-    /**
-     * Gets city
-     *
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->container['city'];
-    }
-
-    /**
-     * Sets city
-     *
-     * @param string $city city
-     *
-     * @return $this
-     */
-    public function setCity($city)
-    {
-        $this->container['city'] = $city;
-
-        return $this;
-    }
-
-    /**
-     * Gets country
-     *
-     * @return string|null
-     */
-    public function getCountry()
-    {
-        return $this->container['country'];
-    }
-
-    /**
-     * Sets country
-     *
-     * @param string|null $country 3 letter code of Country eg. SVK, CZE, ...
-     *
-     * @return $this
-     */
-    public function setCountry($country)
-    {
-        $this->container['country'] = $country;
-
-        return $this;
-    }
-
-    /**
-     * Gets sk_ico
-     *
-     * @return int|null
-     */
-    public function getSkIco()
-    {
-        return $this->container['sk_ico'];
-    }
-
-    /**
-     * Sets sk_ico
-     *
-     * @param int|null $sk_ico sk_ico
-     *
-     * @return $this
-     */
-    public function setSkIco($sk_ico)
-    {
-        $this->container['sk_ico'] = $sk_ico;
-
-        return $this;
-    }
-
-    /**
-     * Gets sk_dic
-     *
-     * @return int|null
-     */
-    public function getSkDic()
-    {
-        return $this->container['sk_dic'];
-    }
-
-    /**
-     * Sets sk_dic
-     *
-     * @param int|null $sk_dic sk_dic
-     *
-     * @return $this
-     */
-    public function setSkDic($sk_dic)
-    {
-        $this->container['sk_dic'] = $sk_dic;
-
-        return $this;
-    }
-
-    /**
-     * Gets vat
-     *
-     * @return string|null
-     */
-    public function getVat()
-    {
-        return $this->container['vat'];
-    }
-
-    /**
-     * Sets vat
-     *
-     * @param string|null $vat vat
-     *
-     * @return $this
-     */
-    public function setVat($vat)
-    {
-        $this->container['vat'] = $vat;
+        $this->container['code'] = $code;
 
         return $this;
     }

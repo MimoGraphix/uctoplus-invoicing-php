@@ -1,6 +1,6 @@
 <?php
 /**
- * Address
+ * File
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \MimoGraphix\Uctoplus\ObjectSerializer;
 
 /**
- * Address Class Doc Comment
+ * File Class Doc Comment
  *
  * @category Class
  * @package  MimoGraphix\Uctoplus
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Address implements ModelInterface, ArrayAccess
+class File implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Address implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Address';
+    protected static $openAPIModelName = 'File';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,13 +57,9 @@ class Address implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'street' => 'string',
-        'city' => 'string',
-        'country' => 'string',
-        'sk_ico' => 'int',
-        'sk_dic' => 'int',
-        'vat' => 'string'
+        'file_name' => 'string',
+        'file_content' => 'string',
+        'file_mime_type' => '\MimoGraphix\Uctoplus\Models\FileMimeTypes'
     ];
 
     /**
@@ -72,13 +68,9 @@ class Address implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'street' => null,
-        'city' => null,
-        'country' => null,
-        'sk_ico' => 'int32',
-        'sk_dic' => 'int32',
-        'vat' => null
+        'file_name' => null,
+        'file_content' => null,
+        'file_mime_type' => null
     ];
 
     /**
@@ -108,13 +100,9 @@ class Address implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'street' => 'street',
-        'city' => 'city',
-        'country' => 'country',
-        'sk_ico' => 'sk_ico',
-        'sk_dic' => 'sk_dic',
-        'vat' => 'vat'
+        'file_name' => 'fileName',
+        'file_content' => 'fileContent',
+        'file_mime_type' => 'fileMimeType'
     ];
 
     /**
@@ -123,13 +111,9 @@ class Address implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'street' => 'setStreet',
-        'city' => 'setCity',
-        'country' => 'setCountry',
-        'sk_ico' => 'setSkIco',
-        'sk_dic' => 'setSkDic',
-        'vat' => 'setVat'
+        'file_name' => 'setFileName',
+        'file_content' => 'setFileContent',
+        'file_mime_type' => 'setFileMimeType'
     ];
 
     /**
@@ -138,13 +122,9 @@ class Address implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'street' => 'getStreet',
-        'city' => 'getCity',
-        'country' => 'getCountry',
-        'sk_ico' => 'getSkIco',
-        'sk_dic' => 'getSkDic',
-        'vat' => 'getVat'
+        'file_name' => 'getFileName',
+        'file_content' => 'getFileContent',
+        'file_mime_type' => 'getFileMimeType'
     ];
 
     /**
@@ -207,13 +187,9 @@ class Address implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['street'] = isset($data['street']) ? $data['street'] : null;
-        $this->container['city'] = isset($data['city']) ? $data['city'] : null;
-        $this->container['country'] = isset($data['country']) ? $data['country'] : 'SVK';
-        $this->container['sk_ico'] = isset($data['sk_ico']) ? $data['sk_ico'] : null;
-        $this->container['sk_dic'] = isset($data['sk_dic']) ? $data['sk_dic'] : null;
-        $this->container['vat'] = isset($data['vat']) ? $data['vat'] : 'null';
+        $this->container['file_name'] = isset($data['file_name']) ? $data['file_name'] : null;
+        $this->container['file_content'] = isset($data['file_content']) ? $data['file_content'] : null;
+        $this->container['file_mime_type'] = isset($data['file_mime_type']) ? $data['file_mime_type'] : null;
     }
 
     /**
@@ -225,15 +201,6 @@ class Address implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['street'] === null) {
-            $invalidProperties[] = "'street' can't be null";
-        }
-        if ($this->container['city'] === null) {
-            $invalidProperties[] = "'city' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -250,169 +217,73 @@ class Address implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name name
-     *
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets street
-     *
-     * @return string
-     */
-    public function getStreet()
-    {
-        return $this->container['street'];
-    }
-
-    /**
-     * Sets street
-     *
-     * @param string $street street
-     *
-     * @return $this
-     */
-    public function setStreet($street)
-    {
-        $this->container['street'] = $street;
-
-        return $this;
-    }
-
-    /**
-     * Gets city
-     *
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->container['city'];
-    }
-
-    /**
-     * Sets city
-     *
-     * @param string $city city
-     *
-     * @return $this
-     */
-    public function setCity($city)
-    {
-        $this->container['city'] = $city;
-
-        return $this;
-    }
-
-    /**
-     * Gets country
+     * Gets file_name
      *
      * @return string|null
      */
-    public function getCountry()
+    public function getFileName()
     {
-        return $this->container['country'];
+        return $this->container['file_name'];
     }
 
     /**
-     * Sets country
+     * Sets file_name
      *
-     * @param string|null $country 3 letter code of Country eg. SVK, CZE, ...
+     * @param string|null $file_name file_name
      *
      * @return $this
      */
-    public function setCountry($country)
+    public function setFileName($file_name)
     {
-        $this->container['country'] = $country;
+        $this->container['file_name'] = $file_name;
 
         return $this;
     }
 
     /**
-     * Gets sk_ico
-     *
-     * @return int|null
-     */
-    public function getSkIco()
-    {
-        return $this->container['sk_ico'];
-    }
-
-    /**
-     * Sets sk_ico
-     *
-     * @param int|null $sk_ico sk_ico
-     *
-     * @return $this
-     */
-    public function setSkIco($sk_ico)
-    {
-        $this->container['sk_ico'] = $sk_ico;
-
-        return $this;
-    }
-
-    /**
-     * Gets sk_dic
-     *
-     * @return int|null
-     */
-    public function getSkDic()
-    {
-        return $this->container['sk_dic'];
-    }
-
-    /**
-     * Sets sk_dic
-     *
-     * @param int|null $sk_dic sk_dic
-     *
-     * @return $this
-     */
-    public function setSkDic($sk_dic)
-    {
-        $this->container['sk_dic'] = $sk_dic;
-
-        return $this;
-    }
-
-    /**
-     * Gets vat
+     * Gets file_content
      *
      * @return string|null
      */
-    public function getVat()
+    public function getFileContent()
     {
-        return $this->container['vat'];
+        return $this->container['file_content'];
     }
 
     /**
-     * Sets vat
+     * Sets file_content
      *
-     * @param string|null $vat vat
+     * @param string|null $file_content Base64 encoded file Content
      *
      * @return $this
      */
-    public function setVat($vat)
+    public function setFileContent($file_content)
     {
-        $this->container['vat'] = $vat;
+        $this->container['file_content'] = $file_content;
+
+        return $this;
+    }
+
+    /**
+     * Gets file_mime_type
+     *
+     * @return \MimoGraphix\Uctoplus\Models\FileMimeTypes|null
+     */
+    public function getFileMimeType()
+    {
+        return $this->container['file_mime_type'];
+    }
+
+    /**
+     * Sets file_mime_type
+     *
+     * @param \MimoGraphix\Uctoplus\Models\FileMimeTypes|null $file_mime_type file_mime_type
+     *
+     * @return $this
+     */
+    public function setFileMimeType($file_mime_type)
+    {
+        $this->container['file_mime_type'] = $file_mime_type;
 
         return $this;
     }
