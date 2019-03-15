@@ -13,7 +13,7 @@
 /**
  * Moje Účto+ API
  *
- * API description in Markdown.
+ * Moje Účto+ API is avaliable in test mode at `https://dev.uctoplus.eu/api/v2`.  Production enviroment is located at `https://moje.uctoplus.sk/api/v2`.  All comunication with API is encoded in UTF-8. This REST API is based on Open API v3 standard.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: helpdesk@uctoplus.sk
@@ -57,9 +57,10 @@ class File implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'file_name' => 'string',
-        'file_content' => 'string',
-        'file_mime_type' => '\MimoGraphix\Uctoplus\Models\FileMimeTypes'
+        'name' => 'string',
+        'content' => 'string',
+        'mime_type' => '\MimoGraphix\Uctoplus\Models\FileMimeTypes',
+        'url' => 'string'
     ];
 
     /**
@@ -68,9 +69,10 @@ class File implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'file_name' => null,
-        'file_content' => null,
-        'file_mime_type' => null
+        'name' => null,
+        'content' => null,
+        'mime_type' => null,
+        'url' => null
     ];
 
     /**
@@ -100,9 +102,10 @@ class File implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'file_name' => 'fileName',
-        'file_content' => 'fileContent',
-        'file_mime_type' => 'fileMimeType'
+        'name' => 'name',
+        'content' => 'content',
+        'mime_type' => 'mimeType',
+        'url' => 'url'
     ];
 
     /**
@@ -111,9 +114,10 @@ class File implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'file_name' => 'setFileName',
-        'file_content' => 'setFileContent',
-        'file_mime_type' => 'setFileMimeType'
+        'name' => 'setName',
+        'content' => 'setContent',
+        'mime_type' => 'setMimeType',
+        'url' => 'setUrl'
     ];
 
     /**
@@ -122,9 +126,10 @@ class File implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'file_name' => 'getFileName',
-        'file_content' => 'getFileContent',
-        'file_mime_type' => 'getFileMimeType'
+        'name' => 'getName',
+        'content' => 'getContent',
+        'mime_type' => 'getMimeType',
+        'url' => 'getUrl'
     ];
 
     /**
@@ -187,9 +192,10 @@ class File implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['file_name'] = isset($data['file_name']) ? $data['file_name'] : null;
-        $this->container['file_content'] = isset($data['file_content']) ? $data['file_content'] : null;
-        $this->container['file_mime_type'] = isset($data['file_mime_type']) ? $data['file_mime_type'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['content'] = isset($data['content']) ? $data['content'] : null;
+        $this->container['mime_type'] = isset($data['mime_type']) ? $data['mime_type'] : null;
+        $this->container['url'] = isset($data['url']) ? $data['url'] : null;
     }
 
     /**
@@ -217,73 +223,97 @@ class File implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets file_name
+     * Gets name
      *
      * @return string|null
      */
-    public function getFileName()
+    public function getName()
     {
-        return $this->container['file_name'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets file_name
+     * Sets name
      *
-     * @param string|null $file_name file_name
+     * @param string|null $name name
      *
      * @return $this
      */
-    public function setFileName($file_name)
+    public function setName($name)
     {
-        $this->container['file_name'] = $file_name;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets file_content
+     * Gets content
      *
      * @return string|null
      */
-    public function getFileContent()
+    public function getContent()
     {
-        return $this->container['file_content'];
+        return $this->container['content'];
     }
 
     /**
-     * Sets file_content
+     * Sets content
      *
-     * @param string|null $file_content Base64 encoded file Content
+     * @param string|null $content Base64 encoded file Content
      *
      * @return $this
      */
-    public function setFileContent($file_content)
+    public function setContent($content)
     {
-        $this->container['file_content'] = $file_content;
+        $this->container['content'] = $content;
 
         return $this;
     }
 
     /**
-     * Gets file_mime_type
+     * Gets mime_type
      *
      * @return \MimoGraphix\Uctoplus\Models\FileMimeTypes|null
      */
-    public function getFileMimeType()
+    public function getMimeType()
     {
-        return $this->container['file_mime_type'];
+        return $this->container['mime_type'];
     }
 
     /**
-     * Sets file_mime_type
+     * Sets mime_type
      *
-     * @param \MimoGraphix\Uctoplus\Models\FileMimeTypes|null $file_mime_type file_mime_type
+     * @param \MimoGraphix\Uctoplus\Models\FileMimeTypes|null $mime_type mime_type
      *
      * @return $this
      */
-    public function setFileMimeType($file_mime_type)
+    public function setMimeType($mime_type)
     {
-        $this->container['file_mime_type'] = $file_mime_type;
+        $this->container['mime_type'] = $mime_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string|null $url url
+     *
+     * @return $this
+     */
+    public function setUrl($url)
+    {
+        $this->container['url'] = $url;
 
         return $this;
     }

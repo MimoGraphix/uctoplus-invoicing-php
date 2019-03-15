@@ -13,7 +13,7 @@
 /**
  * Moje Účto+ API
  *
- * API description in Markdown.
+ * Moje Účto+ API is avaliable in test mode at `https://dev.uctoplus.eu/api/v2`.  Production enviroment is located at `https://moje.uctoplus.sk/api/v2`.  All comunication with API is encoded in UTF-8. This REST API is based on Open API v3 standard.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: helpdesk@uctoplus.sk
@@ -58,8 +58,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'status' => 'bool',
-        'message' => 'string',
-        'code' => 'int'
+        'message' => 'string'
     ];
 
     /**
@@ -69,8 +68,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
       */
     protected static $openAPIFormats = [
         'status' => null,
-        'message' => null,
-        'code' => 'int32'
+        'message' => null
     ];
 
     /**
@@ -101,8 +99,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'status' => 'status',
-        'message' => 'message',
-        'code' => 'code'
+        'message' => 'message'
     ];
 
     /**
@@ -112,8 +109,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'status' => 'setStatus',
-        'message' => 'setMessage',
-        'code' => 'setCode'
+        'message' => 'setMessage'
     ];
 
     /**
@@ -123,8 +119,7 @@ class ErrorModel implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'status' => 'getStatus',
-        'message' => 'getMessage',
-        'code' => 'getCode'
+        'message' => 'getMessage'
     ];
 
     /**
@@ -189,7 +184,6 @@ class ErrorModel implements ModelInterface, ArrayAccess
     {
         $this->container['status'] = isset($data['status']) ? $data['status'] : false;
         $this->container['message'] = isset($data['message']) ? $data['message'] : null;
-        $this->container['code'] = isset($data['code']) ? $data['code'] : null;
     }
 
     /**
@@ -204,17 +198,6 @@ class ErrorModel implements ModelInterface, ArrayAccess
         if ($this->container['message'] === null) {
             $invalidProperties[] = "'message' can't be null";
         }
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
-        }
-        if (($this->container['code'] > 600)) {
-            $invalidProperties[] = "invalid value for 'code', must be smaller than or equal to 600.";
-        }
-
-        if (($this->container['code'] < 100)) {
-            $invalidProperties[] = "invalid value for 'code', must be bigger than or equal to 100.";
-        }
-
         return $invalidProperties;
     }
 
@@ -274,38 +257,6 @@ class ErrorModel implements ModelInterface, ArrayAccess
     public function setMessage($message)
     {
         $this->container['message'] = $message;
-
-        return $this;
-    }
-
-    /**
-     * Gets code
-     *
-     * @return int
-     */
-    public function getCode()
-    {
-        return $this->container['code'];
-    }
-
-    /**
-     * Sets code
-     *
-     * @param int $code code
-     *
-     * @return $this
-     */
-    public function setCode($code)
-    {
-
-        if (($code > 600)) {
-            throw new \InvalidArgumentException('invalid value for $code when calling ErrorModel., must be smaller than or equal to 600.');
-        }
-        if (($code < 100)) {
-            throw new \InvalidArgumentException('invalid value for $code when calling ErrorModel., must be bigger than or equal to 100.');
-        }
-
-        $this->container['code'] = $code;
 
         return $this;
     }

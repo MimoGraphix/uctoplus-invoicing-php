@@ -1,12 +1,10 @@
-# File
+# Payment
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **string** |  | [optional] 
-**content** | **string** | Base64 encoded file Content | [optional] 
-**mime_type** | [**\MimoGraphix\Uctoplus\Models\FileMimeTypes**](FileMimeTypes.md) |  | [optional] 
-**url** | **string** |  | [optional] 
+**total_payed** | **float** |  | 
+**date** | [**\DateTime**](\DateTime.md) | Date in format parsable by PHP DateTime Class (eg.: yyyy-mm-dd) | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Issuer
+ * LinkedInvoiceItem
  *
  * PHP version 5
  *
@@ -33,14 +33,15 @@ use \ArrayAccess;
 use \MimoGraphix\Uctoplus\ObjectSerializer;
 
 /**
- * Issuer Class Doc Comment
+ * LinkedInvoiceItem Class Doc Comment
  *
  * @category Class
+ * @description One line summary. If not provided Invoice number is used.
  * @package  MimoGraphix\Uctoplus
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Issuer implements ModelInterface, ArrayAccess
+class LinkedInvoiceItem implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class Issuer implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Issuer';
+    protected static $openAPIModelName = 'LinkedInvoiceItem';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +58,10 @@ class Issuer implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'phone' => 'string',
-        'web' => 'string',
-        'email' => 'string'
+        'id' => 'int',
+        'invoice_id' => 'int',
+        'summary' => 'string',
+        'description' => 'string'
     ];
 
     /**
@@ -69,10 +70,10 @@ class Issuer implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'phone' => null,
-        'web' => null,
-        'email' => null
+        'id' => 'int64',
+        'invoice_id' => 'int64',
+        'summary' => null,
+        'description' => null
     ];
 
     /**
@@ -102,10 +103,10 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'phone' => 'phone',
-        'web' => 'web',
-        'email' => 'email'
+        'id' => 'id',
+        'invoice_id' => 'invoiceId',
+        'summary' => 'summary',
+        'description' => 'description'
     ];
 
     /**
@@ -114,10 +115,10 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'phone' => 'setPhone',
-        'web' => 'setWeb',
-        'email' => 'setEmail'
+        'id' => 'setId',
+        'invoice_id' => 'setInvoiceId',
+        'summary' => 'setSummary',
+        'description' => 'setDescription'
     ];
 
     /**
@@ -126,10 +127,10 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'phone' => 'getPhone',
-        'web' => 'getWeb',
-        'email' => 'getEmail'
+        'id' => 'getId',
+        'invoice_id' => 'getInvoiceId',
+        'summary' => 'getSummary',
+        'description' => 'getDescription'
     ];
 
     /**
@@ -192,10 +193,10 @@ class Issuer implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
-        $this->container['web'] = isset($data['web']) ? $data['web'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['invoice_id'] = isset($data['invoice_id']) ? $data['invoice_id'] : null;
+        $this->container['summary'] = isset($data['summary']) ? $data['summary'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
     }
 
     /**
@@ -207,8 +208,8 @@ class Issuer implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['invoice_id'] === null) {
+            $invalidProperties[] = "'invoice_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -226,97 +227,97 @@ class Issuer implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets name
+     * Gets id
      *
-     * @return string
+     * @return int|null
      */
-    public function getName()
+    public function getId()
     {
-        return $this->container['name'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets name
+     * Sets id
      *
-     * @param string $name name
+     * @param int|null $id id
      *
      * @return $this
      */
-    public function setName($name)
+    public function setId($id)
     {
-        $this->container['name'] = $name;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets phone
+     * Gets invoice_id
      *
-     * @return string|null
+     * @return int
      */
-    public function getPhone()
+    public function getInvoiceId()
     {
-        return $this->container['phone'];
+        return $this->container['invoice_id'];
     }
 
     /**
-     * Sets phone
+     * Sets invoice_id
      *
-     * @param string|null $phone phone
+     * @param int $invoice_id Only `PROFORMA_INVOICE` can be used as a link.
      *
      * @return $this
      */
-    public function setPhone($phone)
+    public function setInvoiceId($invoice_id)
     {
-        $this->container['phone'] = $phone;
+        $this->container['invoice_id'] = $invoice_id;
 
         return $this;
     }
 
     /**
-     * Gets web
+     * Gets summary
      *
      * @return string|null
      */
-    public function getWeb()
+    public function getSummary()
     {
-        return $this->container['web'];
+        return $this->container['summary'];
     }
 
     /**
-     * Sets web
+     * Sets summary
      *
-     * @param string|null $web web
+     * @param string|null $summary One line summary. If not provided Invoice number is used.
      *
      * @return $this
      */
-    public function setWeb($web)
+    public function setSummary($summary)
     {
-        $this->container['web'] = $web;
+        $this->container['summary'] = $summary;
 
         return $this;
     }
 
     /**
-     * Gets email
+     * Gets description
      *
      * @return string|null
      */
-    public function getEmail()
+    public function getDescription()
     {
-        return $this->container['email'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets email
+     * Sets description
      *
-     * @param string|null $email email
+     * @param string|null $description Description of item. Markdown language allowed.
      *
      * @return $this
      */
-    public function setEmail($email)
+    public function setDescription($description)
     {
-        $this->container['email'] = $email;
+        $this->container['description'] = $description;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Issuer
+ * InvoiceTemplate
  *
  * PHP version 5
  *
@@ -33,14 +33,15 @@ use \ArrayAccess;
 use \MimoGraphix\Uctoplus\ObjectSerializer;
 
 /**
- * Issuer Class Doc Comment
+ * InvoiceTemplate Class Doc Comment
  *
  * @category Class
+ * @description ID from [Moje Účto+](http://moje.uctoplus.sk/)
  * @package  MimoGraphix\Uctoplus
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Issuer implements ModelInterface, ArrayAccess
+class InvoiceTemplate implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class Issuer implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Issuer';
+    protected static $openAPIModelName = 'InvoiceTemplate';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +58,8 @@ class Issuer implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'phone' => 'string',
-        'web' => 'string',
-        'email' => 'string'
+        'id' => 'int',
+        'name' => 'string'
     ];
 
     /**
@@ -69,10 +68,8 @@ class Issuer implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'phone' => null,
-        'web' => null,
-        'email' => null
+        'id' => 'int64',
+        'name' => null
     ];
 
     /**
@@ -102,10 +99,8 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'phone' => 'phone',
-        'web' => 'web',
-        'email' => 'email'
+        'id' => 'id',
+        'name' => 'name'
     ];
 
     /**
@@ -114,10 +109,8 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'phone' => 'setPhone',
-        'web' => 'setWeb',
-        'email' => 'setEmail'
+        'id' => 'setId',
+        'name' => 'setName'
     ];
 
     /**
@@ -126,10 +119,8 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'phone' => 'getPhone',
-        'web' => 'getWeb',
-        'email' => 'getEmail'
+        'id' => 'getId',
+        'name' => 'getName'
     ];
 
     /**
@@ -192,10 +183,8 @@ class Issuer implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
-        $this->container['web'] = isset($data['web']) ? $data['web'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
     }
 
     /**
@@ -207,9 +196,6 @@ class Issuer implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -226,9 +212,33 @@ class Issuer implements ModelInterface, ArrayAccess
 
 
     /**
+     * Gets id
+     *
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param int|null $id id
+     *
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -238,85 +248,13 @@ class Issuer implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string $name name
+     * @param string|null $name name
      *
      * @return $this
      */
     public function setName($name)
     {
         $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets phone
-     *
-     * @return string|null
-     */
-    public function getPhone()
-    {
-        return $this->container['phone'];
-    }
-
-    /**
-     * Sets phone
-     *
-     * @param string|null $phone phone
-     *
-     * @return $this
-     */
-    public function setPhone($phone)
-    {
-        $this->container['phone'] = $phone;
-
-        return $this;
-    }
-
-    /**
-     * Gets web
-     *
-     * @return string|null
-     */
-    public function getWeb()
-    {
-        return $this->container['web'];
-    }
-
-    /**
-     * Sets web
-     *
-     * @param string|null $web web
-     *
-     * @return $this
-     */
-    public function setWeb($web)
-    {
-        $this->container['web'] = $web;
-
-        return $this;
-    }
-
-    /**
-     * Gets email
-     *
-     * @return string|null
-     */
-    public function getEmail()
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     *
-     * @param string|null $email email
-     *
-     * @return $this
-     */
-    public function setEmail($email)
-    {
-        $this->container['email'] = $email;
 
         return $this;
     }

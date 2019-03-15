@@ -13,7 +13,7 @@
 /**
  * Moje Účto+ API
  *
- * API description in Markdown.
+ * Moje Účto+ API is avaliable in test mode at `https://dev.uctoplus.eu/api/v2`.  Production enviroment is located at `https://moje.uctoplus.sk/api/v2`.  All comunication with API is encoded in UTF-8. This REST API is based on Open API v3 standard.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: helpdesk@uctoplus.sk
@@ -57,19 +57,18 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
+        'id' => 'int',
         'invoice_number' => 'string',
-        'invoice_type' => '\MimoGraphix\Uctoplus\Models\InvoiceType',
+        'invoice_type' => 'string',
         'description' => 'string',
-        'sender' => '\MimoGraphix\Uctoplus\Models\Address',
+        'sender' => 'object',
         'variable_symbol' => 'string',
         'konstantny_symbol' => 'string',
         'specificky_symbol' => 'string',
-        'date_issue' => 'string',
-        'date_delivery' => 'string',
-        'date_due' => 'string',
-        'payment_flag' => 'bool',
-        'payment_value' => 'float',
-        'payment_date' => 'string',
+        'date_issue' => '\DateTime',
+        'date_delivery' => '\DateTime',
+        'date_due' => '\DateTime',
+        'payment' => 'object',
         'price_without_vat' => 'float',
         'price_with_vat' => 'float',
         'currency' => 'string',
@@ -82,6 +81,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
+        'id' => 'int64',
         'invoice_number' => null,
         'invoice_type' => null,
         'description' => null,
@@ -89,12 +89,10 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
         'variable_symbol' => null,
         'konstantny_symbol' => null,
         'specificky_symbol' => null,
-        'date_issue' => null,
-        'date_delivery' => null,
-        'date_due' => null,
-        'payment_flag' => null,
-        'payment_value' => null,
-        'payment_date' => null,
+        'date_issue' => 'date',
+        'date_delivery' => 'date',
+        'date_due' => 'date',
+        'payment' => null,
         'price_without_vat' => null,
         'price_with_vat' => null,
         'currency' => null,
@@ -128,6 +126,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
         'invoice_number' => 'invoiceNumber',
         'invoice_type' => 'invoiceType',
         'description' => 'description',
@@ -138,9 +137,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
         'date_issue' => 'dateIssue',
         'date_delivery' => 'dateDelivery',
         'date_due' => 'dateDue',
-        'payment_flag' => 'paymentFlag',
-        'payment_value' => 'paymentValue',
-        'payment_date' => 'paymentDate',
+        'payment' => 'payment',
         'price_without_vat' => 'priceWithoutVAT',
         'price_with_vat' => 'priceWithVAT',
         'currency' => 'currency',
@@ -153,6 +150,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
         'invoice_number' => 'setInvoiceNumber',
         'invoice_type' => 'setInvoiceType',
         'description' => 'setDescription',
@@ -163,9 +161,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
         'date_issue' => 'setDateIssue',
         'date_delivery' => 'setDateDelivery',
         'date_due' => 'setDateDue',
-        'payment_flag' => 'setPaymentFlag',
-        'payment_value' => 'setPaymentValue',
-        'payment_date' => 'setPaymentDate',
+        'payment' => 'setPayment',
         'price_without_vat' => 'setPriceWithoutVat',
         'price_with_vat' => 'setPriceWithVat',
         'currency' => 'setCurrency',
@@ -178,6 +174,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
         'invoice_number' => 'getInvoiceNumber',
         'invoice_type' => 'getInvoiceType',
         'description' => 'getDescription',
@@ -188,9 +185,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
         'date_issue' => 'getDateIssue',
         'date_delivery' => 'getDateDelivery',
         'date_due' => 'getDateDue',
-        'payment_flag' => 'getPaymentFlag',
-        'payment_value' => 'getPaymentValue',
-        'payment_date' => 'getPaymentDate',
+        'payment' => 'getPayment',
         'price_without_vat' => 'getPriceWithoutVat',
         'price_with_vat' => 'getPriceWithVat',
         'currency' => 'getCurrency',
@@ -238,8 +233,25 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
+    const INVOICE_TYPE_INVOICE = 'TYPE_INVOICE';
+    const INVOICE_TYPE_PROFORMA_INVOICE = 'TYPE_PROFORMA_INVOICE';
+    const INVOICE_TYPE_VAT_PROOF = 'TYPE_VAT_PROOF';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getInvoiceTypeAllowableValues()
+    {
+        return [
+            self::INVOICE_TYPE_INVOICE,
+            self::INVOICE_TYPE_PROFORMA_INVOICE,
+            self::INVOICE_TYPE_VAT_PROOF,
+        ];
+    }
     
 
     /**
@@ -257,19 +269,18 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['invoice_number'] = isset($data['invoice_number']) ? $data['invoice_number'] : null;
         $this->container['invoice_type'] = isset($data['invoice_type']) ? $data['invoice_type'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : 'null';
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['sender'] = isset($data['sender']) ? $data['sender'] : null;
-        $this->container['variable_symbol'] = isset($data['variable_symbol']) ? $data['variable_symbol'] : 'null';
-        $this->container['konstantny_symbol'] = isset($data['konstantny_symbol']) ? $data['konstantny_symbol'] : 'null';
-        $this->container['specificky_symbol'] = isset($data['specificky_symbol']) ? $data['specificky_symbol'] : 'null';
+        $this->container['variable_symbol'] = isset($data['variable_symbol']) ? $data['variable_symbol'] : null;
+        $this->container['konstantny_symbol'] = isset($data['konstantny_symbol']) ? $data['konstantny_symbol'] : null;
+        $this->container['specificky_symbol'] = isset($data['specificky_symbol']) ? $data['specificky_symbol'] : null;
         $this->container['date_issue'] = isset($data['date_issue']) ? $data['date_issue'] : null;
-        $this->container['date_delivery'] = isset($data['date_delivery']) ? $data['date_delivery'] : 'null';
-        $this->container['date_due'] = isset($data['date_due']) ? $data['date_due'] : 'null';
-        $this->container['payment_flag'] = isset($data['payment_flag']) ? $data['payment_flag'] : false;
-        $this->container['payment_value'] = isset($data['payment_value']) ? $data['payment_value'] : null;
-        $this->container['payment_date'] = isset($data['payment_date']) ? $data['payment_date'] : 'null';
+        $this->container['date_delivery'] = isset($data['date_delivery']) ? $data['date_delivery'] : null;
+        $this->container['date_due'] = isset($data['date_due']) ? $data['date_due'] : null;
+        $this->container['payment'] = isset($data['payment']) ? $data['payment'] : null;
         $this->container['price_without_vat'] = isset($data['price_without_vat']) ? $data['price_without_vat'] : null;
         $this->container['price_with_vat'] = isset($data['price_with_vat']) ? $data['price_with_vat'] : null;
         $this->container['currency'] = isset($data['currency']) ? $data['currency'] : 'EUR';
@@ -291,6 +302,14 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
         if ($this->container['invoice_type'] === null) {
             $invalidProperties[] = "'invoice_type' can't be null";
         }
+        $allowedValues = $this->getInvoiceTypeAllowableValues();
+        if (!is_null($this->container['invoice_type']) && !in_array($this->container['invoice_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'invoice_type', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['sender'] === null) {
             $invalidProperties[] = "'sender' can't be null";
         }
@@ -322,6 +341,30 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
 
 
     /**
+     * Gets id
+     *
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param int|null $id id
+     *
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
      * Gets invoice_number
      *
      * @return string
@@ -348,7 +391,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
     /**
      * Gets invoice_type
      *
-     * @return \MimoGraphix\Uctoplus\Models\InvoiceType
+     * @return string
      */
     public function getInvoiceType()
     {
@@ -358,12 +401,21 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
     /**
      * Sets invoice_type
      *
-     * @param \MimoGraphix\Uctoplus\Models\InvoiceType $invoice_type invoice_type
+     * @param string $invoice_type * `TYPE_INVOICE` - Invocie * `TYPE_PROFORMA_INVOICE` - Proforma Invoice * `TYPE_VAT_PROOF` - VAT Proof
      *
      * @return $this
      */
     public function setInvoiceType($invoice_type)
     {
+        $allowedValues = $this->getInvoiceTypeAllowableValues();
+        if (!in_array($invoice_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'invoice_type', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['invoice_type'] = $invoice_type;
 
         return $this;
@@ -396,7 +448,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
     /**
      * Gets sender
      *
-     * @return \MimoGraphix\Uctoplus\Models\Address
+     * @return object
      */
     public function getSender()
     {
@@ -406,7 +458,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
     /**
      * Sets sender
      *
-     * @param \MimoGraphix\Uctoplus\Models\Address $sender sender
+     * @param object $sender sender
      *
      * @return $this
      */
@@ -492,7 +544,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
     /**
      * Gets date_issue
      *
-     * @return string
+     * @return \DateTime
      */
     public function getDateIssue()
     {
@@ -502,7 +554,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
     /**
      * Sets date_issue
      *
-     * @param string $date_issue Date in format parsable by PHP DateTime
+     * @param \DateTime $date_issue Date in format parsable by PHP DateTime Class (eg.: yyyy-mm-dd)
      *
      * @return $this
      */
@@ -516,7 +568,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
     /**
      * Gets date_delivery
      *
-     * @return string|null
+     * @return \DateTime|null
      */
     public function getDateDelivery()
     {
@@ -526,7 +578,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
     /**
      * Sets date_delivery
      *
-     * @param string|null $date_delivery Date in format parsable by PHP DateTime
+     * @param \DateTime|null $date_delivery Date in format parsable by PHP DateTime Class (eg.: yyyy-mm-dd)
      *
      * @return $this
      */
@@ -540,7 +592,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
     /**
      * Gets date_due
      *
-     * @return string|null
+     * @return \DateTime|null
      */
     public function getDateDue()
     {
@@ -550,7 +602,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
     /**
      * Sets date_due
      *
-     * @param string|null $date_due Date in format parsable by PHP DateTime
+     * @param \DateTime|null $date_due Date in format parsable by PHP DateTime Class (eg.: yyyy-mm-dd)
      *
      * @return $this
      */
@@ -562,73 +614,25 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets payment_flag
+     * Gets payment
      *
-     * @return bool|null
+     * @return object|null
      */
-    public function getPaymentFlag()
+    public function getPayment()
     {
-        return $this->container['payment_flag'];
+        return $this->container['payment'];
     }
 
     /**
-     * Sets payment_flag
+     * Sets payment
      *
-     * @param bool|null $payment_flag payment_flag
+     * @param object|null $payment payment
      *
      * @return $this
      */
-    public function setPaymentFlag($payment_flag)
+    public function setPayment($payment)
     {
-        $this->container['payment_flag'] = $payment_flag;
-
-        return $this;
-    }
-
-    /**
-     * Gets payment_value
-     *
-     * @return float|null
-     */
-    public function getPaymentValue()
-    {
-        return $this->container['payment_value'];
-    }
-
-    /**
-     * Sets payment_value
-     *
-     * @param float|null $payment_value payment_value
-     *
-     * @return $this
-     */
-    public function setPaymentValue($payment_value)
-    {
-        $this->container['payment_value'] = $payment_value;
-
-        return $this;
-    }
-
-    /**
-     * Gets payment_date
-     *
-     * @return string|null
-     */
-    public function getPaymentDate()
-    {
-        return $this->container['payment_date'];
-    }
-
-    /**
-     * Sets payment_date
-     *
-     * @param string|null $payment_date Date in format parsable by PHP DateTime
-     *
-     * @return $this
-     */
-    public function setPaymentDate($payment_date)
-    {
-        $this->container['payment_date'] = $payment_date;
+        $this->container['payment'] = $payment;
 
         return $this;
     }
@@ -694,7 +698,7 @@ class IncommingInvoice implements ModelInterface, ArrayAccess
     /**
      * Sets currency
      *
-     * @param string $currency 3 letter code of Currency eg. EUR, GBP, CZK, ...
+     * @param string $currency Currency of invoice, format corresponds to [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html)
      *
      * @return $this
      */

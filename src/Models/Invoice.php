@@ -13,7 +13,7 @@
 /**
  * Moje Účto+ API
  *
- * API description in Markdown.
+ * Moje Účto+ API is avaliable in test mode at `https://dev.uctoplus.eu/api/v2`.  Production enviroment is located at `https://moje.uctoplus.sk/api/v2`.  All comunication with API is encoded in UTF-8. This REST API is based on Open API v3 standard.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: helpdesk@uctoplus.sk
@@ -57,36 +57,37 @@ class Invoice implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'invoice_number' => 'string',
-        'invoice_type' => '\MimoGraphix\Uctoplus\Models\InvoiceType',
-        'description' => 'string',
-        'reciever' => '\MimoGraphix\Uctoplus\Models\Address',
-        'delivery_address' => '\MimoGraphix\Uctoplus\Models\Address',
+        'id' => 'int',
+        'invoice_number' => 'object',
+        'invoice_type' => 'string',
+        'reciever' => 'object',
+        'delivery_address' => '\MimoGraphix\Uctoplus\Models\DeliveryAddress',
+        'internal_description' => 'string',
         'variable_symbol' => 'string',
         'konstantny_symbol' => 'string',
         'specificky_symbol' => 'string',
-        'date_issue' => 'string',
-        'date_delivery' => 'string',
-        'date_due' => 'string',
-        'discount' => 'float',
+        'date_issue' => '\DateTime',
+        'date_delivery' => '\DateTime',
+        'date_due' => '\DateTime',
         'currency' => 'string',
-        'payment_flag' => 'bool',
-        'payment_value' => 'float',
-        'payment_date' => 'string',
         'issuer' => '\MimoGraphix\Uctoplus\Models\Issuer',
         'language' => '\MimoGraphix\Uctoplus\Models\Language',
         'note1' => 'string',
         'note2' => 'string',
         'note3' => 'string',
-        'prenesenie_dph' => 'bool',
+        'theme' => '\MimoGraphix\Uctoplus\Models\Theme',
         'logo_version' => 'int',
         'signature_version' => 'int',
         'delivery_type' => 'int',
         'payment_type' => 'int',
-        'currency2_rate' => 'float',
-        'currency2' => 'string',
-        'invoice_number_counter' => 'int',
-        'invoice_template' => 'int'
+        'currency2' => '\MimoGraphix\Uctoplus\Models\InvoiceCurrency2',
+        'items' => 'object[]',
+        'prenesenie_dph' => 'bool',
+        'discount' => 'float',
+        'payment' => 'object',
+        'file' => 'object',
+        'moje_uctoplus_url' => 'string',
+        'summary' => 'object'
     ];
 
     /**
@@ -95,36 +96,37 @@ class Invoice implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
+        'id' => 'int64',
         'invoice_number' => null,
         'invoice_type' => null,
-        'description' => null,
         'reciever' => null,
         'delivery_address' => null,
+        'internal_description' => null,
         'variable_symbol' => null,
         'konstantny_symbol' => null,
         'specificky_symbol' => null,
-        'date_issue' => null,
-        'date_delivery' => null,
-        'date_due' => null,
-        'discount' => null,
+        'date_issue' => 'date',
+        'date_delivery' => 'date',
+        'date_due' => 'date',
         'currency' => null,
-        'payment_flag' => null,
-        'payment_value' => null,
-        'payment_date' => null,
         'issuer' => null,
         'language' => null,
         'note1' => null,
         'note2' => null,
         'note3' => null,
-        'prenesenie_dph' => null,
+        'theme' => null,
         'logo_version' => 'int32',
         'signature_version' => 'int32',
         'delivery_type' => 'int32',
         'payment_type' => 'int32',
-        'currency2_rate' => null,
         'currency2' => null,
-        'invoice_number_counter' => 'int32',
-        'invoice_template' => 'int32'
+        'items' => null,
+        'prenesenie_dph' => null,
+        'discount' => null,
+        'payment' => null,
+        'file' => null,
+        'moje_uctoplus_url' => null,
+        'summary' => null
     ];
 
     /**
@@ -154,36 +156,37 @@ class Invoice implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
         'invoice_number' => 'invoiceNumber',
         'invoice_type' => 'invoiceType',
-        'description' => 'description',
         'reciever' => 'reciever',
         'delivery_address' => 'deliveryAddress',
+        'internal_description' => 'internalDescription',
         'variable_symbol' => 'variableSymbol',
         'konstantny_symbol' => 'konstantnySymbol',
         'specificky_symbol' => 'specifickySymbol',
         'date_issue' => 'dateIssue',
         'date_delivery' => 'dateDelivery',
         'date_due' => 'dateDue',
-        'discount' => 'discount',
         'currency' => 'currency',
-        'payment_flag' => 'paymentFlag',
-        'payment_value' => 'paymentValue',
-        'payment_date' => 'paymentDate',
         'issuer' => 'issuer',
         'language' => 'language',
         'note1' => 'note1',
         'note2' => 'note2',
         'note3' => 'note3',
-        'prenesenie_dph' => 'prenesenieDPH',
+        'theme' => 'theme',
         'logo_version' => 'logoVersion',
         'signature_version' => 'signatureVersion',
         'delivery_type' => 'deliveryType',
         'payment_type' => 'paymentType',
-        'currency2_rate' => 'currency2Rate',
         'currency2' => 'currency2',
-        'invoice_number_counter' => 'invoiceNumberCounter',
-        'invoice_template' => 'invoiceTemplate'
+        'items' => 'items',
+        'prenesenie_dph' => 'prenesenieDPH',
+        'discount' => 'discount',
+        'payment' => 'payment',
+        'file' => 'file',
+        'moje_uctoplus_url' => 'mojeUctoplusUrl',
+        'summary' => 'summary'
     ];
 
     /**
@@ -192,36 +195,37 @@ class Invoice implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
         'invoice_number' => 'setInvoiceNumber',
         'invoice_type' => 'setInvoiceType',
-        'description' => 'setDescription',
         'reciever' => 'setReciever',
         'delivery_address' => 'setDeliveryAddress',
+        'internal_description' => 'setInternalDescription',
         'variable_symbol' => 'setVariableSymbol',
         'konstantny_symbol' => 'setKonstantnySymbol',
         'specificky_symbol' => 'setSpecifickySymbol',
         'date_issue' => 'setDateIssue',
         'date_delivery' => 'setDateDelivery',
         'date_due' => 'setDateDue',
-        'discount' => 'setDiscount',
         'currency' => 'setCurrency',
-        'payment_flag' => 'setPaymentFlag',
-        'payment_value' => 'setPaymentValue',
-        'payment_date' => 'setPaymentDate',
         'issuer' => 'setIssuer',
         'language' => 'setLanguage',
         'note1' => 'setNote1',
         'note2' => 'setNote2',
         'note3' => 'setNote3',
-        'prenesenie_dph' => 'setPrenesenieDph',
+        'theme' => 'setTheme',
         'logo_version' => 'setLogoVersion',
         'signature_version' => 'setSignatureVersion',
         'delivery_type' => 'setDeliveryType',
         'payment_type' => 'setPaymentType',
-        'currency2_rate' => 'setCurrency2Rate',
         'currency2' => 'setCurrency2',
-        'invoice_number_counter' => 'setInvoiceNumberCounter',
-        'invoice_template' => 'setInvoiceTemplate'
+        'items' => 'setItems',
+        'prenesenie_dph' => 'setPrenesenieDph',
+        'discount' => 'setDiscount',
+        'payment' => 'setPayment',
+        'file' => 'setFile',
+        'moje_uctoplus_url' => 'setMojeUctoplusUrl',
+        'summary' => 'setSummary'
     ];
 
     /**
@@ -230,36 +234,37 @@ class Invoice implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
         'invoice_number' => 'getInvoiceNumber',
         'invoice_type' => 'getInvoiceType',
-        'description' => 'getDescription',
         'reciever' => 'getReciever',
         'delivery_address' => 'getDeliveryAddress',
+        'internal_description' => 'getInternalDescription',
         'variable_symbol' => 'getVariableSymbol',
         'konstantny_symbol' => 'getKonstantnySymbol',
         'specificky_symbol' => 'getSpecifickySymbol',
         'date_issue' => 'getDateIssue',
         'date_delivery' => 'getDateDelivery',
         'date_due' => 'getDateDue',
-        'discount' => 'getDiscount',
         'currency' => 'getCurrency',
-        'payment_flag' => 'getPaymentFlag',
-        'payment_value' => 'getPaymentValue',
-        'payment_date' => 'getPaymentDate',
         'issuer' => 'getIssuer',
         'language' => 'getLanguage',
         'note1' => 'getNote1',
         'note2' => 'getNote2',
         'note3' => 'getNote3',
-        'prenesenie_dph' => 'getPrenesenieDph',
+        'theme' => 'getTheme',
         'logo_version' => 'getLogoVersion',
         'signature_version' => 'getSignatureVersion',
         'delivery_type' => 'getDeliveryType',
         'payment_type' => 'getPaymentType',
-        'currency2_rate' => 'getCurrency2Rate',
         'currency2' => 'getCurrency2',
-        'invoice_number_counter' => 'getInvoiceNumberCounter',
-        'invoice_template' => 'getInvoiceTemplate'
+        'items' => 'getItems',
+        'prenesenie_dph' => 'getPrenesenieDph',
+        'discount' => 'getDiscount',
+        'payment' => 'getPayment',
+        'file' => 'getFile',
+        'moje_uctoplus_url' => 'getMojeUctoplusUrl',
+        'summary' => 'getSummary'
     ];
 
     /**
@@ -303,8 +308,27 @@ class Invoice implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
+    const INVOICE_TYPE_INVOICE = 'INVOICE';
+    const INVOICE_TYPE_PROFORMA_INVOICE = 'PROFORMA_INVOICE';
+    const INVOICE_TYPE_DODACI_LIST = 'DODACI_LIST';
+    const INVOICE_TYPE_PRICE_QUOTATION = 'PRICE_QUOTATION';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getInvoiceTypeAllowableValues()
+    {
+        return [
+            self::INVOICE_TYPE_INVOICE,
+            self::INVOICE_TYPE_PROFORMA_INVOICE,
+            self::INVOICE_TYPE_DODACI_LIST,
+            self::INVOICE_TYPE_PRICE_QUOTATION,
+        ];
+    }
     
 
     /**
@@ -322,36 +346,37 @@ class Invoice implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['invoice_number'] = isset($data['invoice_number']) ? $data['invoice_number'] : 'null';
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['invoice_number'] = isset($data['invoice_number']) ? $data['invoice_number'] : null;
         $this->container['invoice_type'] = isset($data['invoice_type']) ? $data['invoice_type'] : null;
-        $this->container['description'] = isset($data['description']) ? $data['description'] : 'null';
         $this->container['reciever'] = isset($data['reciever']) ? $data['reciever'] : null;
         $this->container['delivery_address'] = isset($data['delivery_address']) ? $data['delivery_address'] : null;
-        $this->container['variable_symbol'] = isset($data['variable_symbol']) ? $data['variable_symbol'] : 'null';
-        $this->container['konstantny_symbol'] = isset($data['konstantny_symbol']) ? $data['konstantny_symbol'] : 'null';
-        $this->container['specificky_symbol'] = isset($data['specificky_symbol']) ? $data['specificky_symbol'] : 'null';
+        $this->container['internal_description'] = isset($data['internal_description']) ? $data['internal_description'] : null;
+        $this->container['variable_symbol'] = isset($data['variable_symbol']) ? $data['variable_symbol'] : null;
+        $this->container['konstantny_symbol'] = isset($data['konstantny_symbol']) ? $data['konstantny_symbol'] : null;
+        $this->container['specificky_symbol'] = isset($data['specificky_symbol']) ? $data['specificky_symbol'] : null;
         $this->container['date_issue'] = isset($data['date_issue']) ? $data['date_issue'] : null;
-        $this->container['date_delivery'] = isset($data['date_delivery']) ? $data['date_delivery'] : 'null';
-        $this->container['date_due'] = isset($data['date_due']) ? $data['date_due'] : 'null';
-        $this->container['discount'] = isset($data['discount']) ? $data['discount'] : 0;
+        $this->container['date_delivery'] = isset($data['date_delivery']) ? $data['date_delivery'] : null;
+        $this->container['date_due'] = isset($data['date_due']) ? $data['date_due'] : null;
         $this->container['currency'] = isset($data['currency']) ? $data['currency'] : 'EUR';
-        $this->container['payment_flag'] = isset($data['payment_flag']) ? $data['payment_flag'] : false;
-        $this->container['payment_value'] = isset($data['payment_value']) ? $data['payment_value'] : null;
-        $this->container['payment_date'] = isset($data['payment_date']) ? $data['payment_date'] : 'null';
         $this->container['issuer'] = isset($data['issuer']) ? $data['issuer'] : null;
         $this->container['language'] = isset($data['language']) ? $data['language'] : null;
-        $this->container['note1'] = isset($data['note1']) ? $data['note1'] : 'null';
-        $this->container['note2'] = isset($data['note2']) ? $data['note2'] : 'null';
-        $this->container['note3'] = isset($data['note3']) ? $data['note3'] : 'null';
-        $this->container['prenesenie_dph'] = isset($data['prenesenie_dph']) ? $data['prenesenie_dph'] : false;
+        $this->container['note1'] = isset($data['note1']) ? $data['note1'] : null;
+        $this->container['note2'] = isset($data['note2']) ? $data['note2'] : null;
+        $this->container['note3'] = isset($data['note3']) ? $data['note3'] : null;
+        $this->container['theme'] = isset($data['theme']) ? $data['theme'] : null;
         $this->container['logo_version'] = isset($data['logo_version']) ? $data['logo_version'] : null;
         $this->container['signature_version'] = isset($data['signature_version']) ? $data['signature_version'] : null;
         $this->container['delivery_type'] = isset($data['delivery_type']) ? $data['delivery_type'] : null;
         $this->container['payment_type'] = isset($data['payment_type']) ? $data['payment_type'] : null;
-        $this->container['currency2_rate'] = isset($data['currency2_rate']) ? $data['currency2_rate'] : null;
-        $this->container['currency2'] = isset($data['currency2']) ? $data['currency2'] : 'EUR';
-        $this->container['invoice_number_counter'] = isset($data['invoice_number_counter']) ? $data['invoice_number_counter'] : null;
-        $this->container['invoice_template'] = isset($data['invoice_template']) ? $data['invoice_template'] : null;
+        $this->container['currency2'] = isset($data['currency2']) ? $data['currency2'] : null;
+        $this->container['items'] = isset($data['items']) ? $data['items'] : null;
+        $this->container['prenesenie_dph'] = isset($data['prenesenie_dph']) ? $data['prenesenie_dph'] : false;
+        $this->container['discount'] = isset($data['discount']) ? $data['discount'] : 0.0;
+        $this->container['payment'] = isset($data['payment']) ? $data['payment'] : null;
+        $this->container['file'] = isset($data['file']) ? $data['file'] : null;
+        $this->container['moje_uctoplus_url'] = isset($data['moje_uctoplus_url']) ? $data['moje_uctoplus_url'] : null;
+        $this->container['summary'] = isset($data['summary']) ? $data['summary'] : null;
     }
 
     /**
@@ -363,23 +388,40 @@ class Invoice implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['invoice_number'] === null) {
+            $invalidProperties[] = "'invoice_number' can't be null";
+        }
         if ($this->container['invoice_type'] === null) {
             $invalidProperties[] = "'invoice_type' can't be null";
         }
+        $allowedValues = $this->getInvoiceTypeAllowableValues();
+        if (!is_null($this->container['invoice_type']) && !in_array($this->container['invoice_type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'invoice_type', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['reciever'] === null) {
             $invalidProperties[] = "'reciever' can't be null";
         }
-        if ($this->container['date_due'] === null) {
-            $invalidProperties[] = "'date_due' can't be null";
+        if ($this->container['date_issue'] === null) {
+            $invalidProperties[] = "'date_issue' can't be null";
         }
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
         }
+        if ($this->container['issuer'] === null) {
+            $invalidProperties[] = "'issuer' can't be null";
+        }
+        if ($this->container['language'] === null) {
+            $invalidProperties[] = "'language' can't be null";
+        }
         if ($this->container['payment_type'] === null) {
             $invalidProperties[] = "'payment_type' can't be null";
         }
-        if ($this->container['invoice_number_counter'] === null) {
-            $invalidProperties[] = "'invoice_number_counter' can't be null";
+        if ($this->container['items'] === null) {
+            $invalidProperties[] = "'items' can't be null";
         }
         return $invalidProperties;
     }
@@ -397,9 +439,33 @@ class Invoice implements ModelInterface, ArrayAccess
 
 
     /**
+     * Gets id
+     *
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param int|null $id id
+     *
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
      * Gets invoice_number
      *
-     * @return string|null
+     * @return object
      */
     public function getInvoiceNumber()
     {
@@ -409,7 +475,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Sets invoice_number
      *
-     * @param string|null $invoice_number invoice_number
+     * @param object $invoice_number invoice_number
      *
      * @return $this
      */
@@ -423,7 +489,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Gets invoice_type
      *
-     * @return \MimoGraphix\Uctoplus\Models\InvoiceType
+     * @return string
      */
     public function getInvoiceType()
     {
@@ -433,37 +499,22 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Sets invoice_type
      *
-     * @param \MimoGraphix\Uctoplus\Models\InvoiceType $invoice_type invoice_type
+     * @param string $invoice_type * `INVOICE` - Invocie * `PROFORMA_INVOICE` - Proforma Invoice * `DODACI_LIST` - Dodací list * `PRICE_QUOTATION` - Price Quotation
      *
      * @return $this
      */
     public function setInvoiceType($invoice_type)
     {
+        $allowedValues = $this->getInvoiceTypeAllowableValues();
+        if (!in_array($invoice_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'invoice_type', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['invoice_type'] = $invoice_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets description
-     *
-     * @return string|null
-     */
-    public function getDescription()
-    {
-        return $this->container['description'];
-    }
-
-    /**
-     * Sets description
-     *
-     * @param string|null $description description
-     *
-     * @return $this
-     */
-    public function setDescription($description)
-    {
-        $this->container['description'] = $description;
 
         return $this;
     }
@@ -471,7 +522,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Gets reciever
      *
-     * @return \MimoGraphix\Uctoplus\Models\Address
+     * @return object
      */
     public function getReciever()
     {
@@ -481,7 +532,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Sets reciever
      *
-     * @param \MimoGraphix\Uctoplus\Models\Address $reciever reciever
+     * @param object $reciever If filled new Address in Contact List will be created!
      *
      * @return $this
      */
@@ -495,7 +546,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Gets delivery_address
      *
-     * @return \MimoGraphix\Uctoplus\Models\Address|null
+     * @return \MimoGraphix\Uctoplus\Models\DeliveryAddress|null
      */
     public function getDeliveryAddress()
     {
@@ -505,13 +556,37 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Sets delivery_address
      *
-     * @param \MimoGraphix\Uctoplus\Models\Address|null $delivery_address delivery_address
+     * @param \MimoGraphix\Uctoplus\Models\DeliveryAddress|null $delivery_address delivery_address
      *
      * @return $this
      */
     public function setDeliveryAddress($delivery_address)
     {
         $this->container['delivery_address'] = $delivery_address;
+
+        return $this;
+    }
+
+    /**
+     * Gets internal_description
+     *
+     * @return string|null
+     */
+    public function getInternalDescription()
+    {
+        return $this->container['internal_description'];
+    }
+
+    /**
+     * Sets internal_description
+     *
+     * @param string|null $internal_description internal_description
+     *
+     * @return $this
+     */
+    public function setInternalDescription($internal_description)
+    {
+        $this->container['internal_description'] = $internal_description;
 
         return $this;
     }
@@ -591,7 +666,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Gets date_issue
      *
-     * @return string|null
+     * @return \DateTime
      */
     public function getDateIssue()
     {
@@ -601,7 +676,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Sets date_issue
      *
-     * @param string|null $date_issue Date in format parsable by PHP DateTime
+     * @param \DateTime $date_issue Date in format parsable by PHP DateTime Class (eg.: yyyy-mm-dd)
      *
      * @return $this
      */
@@ -615,7 +690,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Gets date_delivery
      *
-     * @return string|null
+     * @return \DateTime|null
      */
     public function getDateDelivery()
     {
@@ -625,7 +700,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Sets date_delivery
      *
-     * @param string|null $date_delivery Date in format parsable by PHP DateTime
+     * @param \DateTime|null $date_delivery Date in format parsable by PHP DateTime Class (eg.: yyyy-mm-dd)
      *
      * @return $this
      */
@@ -639,7 +714,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Gets date_due
      *
-     * @return string
+     * @return \DateTime|null
      */
     public function getDateDue()
     {
@@ -649,37 +724,13 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Sets date_due
      *
-     * @param string $date_due Date in format parsable by PHP DateTime
+     * @param \DateTime|null $date_due Date in format parsable by PHP DateTime Class (eg.: yyyy-mm-dd)
      *
      * @return $this
      */
     public function setDateDue($date_due)
     {
         $this->container['date_due'] = $date_due;
-
-        return $this;
-    }
-
-    /**
-     * Gets discount
-     *
-     * @return float|null
-     */
-    public function getDiscount()
-    {
-        return $this->container['discount'];
-    }
-
-    /**
-     * Sets discount
-     *
-     * @param float|null $discount discount
-     *
-     * @return $this
-     */
-    public function setDiscount($discount)
-    {
-        $this->container['discount'] = $discount;
 
         return $this;
     }
@@ -697,7 +748,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Sets currency
      *
-     * @param string $currency 3 letter code of Currency eg. EUR, GBP, CZK, ...
+     * @param string $currency Currency of invoice, format corresponds to [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html)
      *
      * @return $this
      */
@@ -709,81 +760,9 @@ class Invoice implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets payment_flag
-     *
-     * @return bool|null
-     */
-    public function getPaymentFlag()
-    {
-        return $this->container['payment_flag'];
-    }
-
-    /**
-     * Sets payment_flag
-     *
-     * @param bool|null $payment_flag payment_flag
-     *
-     * @return $this
-     */
-    public function setPaymentFlag($payment_flag)
-    {
-        $this->container['payment_flag'] = $payment_flag;
-
-        return $this;
-    }
-
-    /**
-     * Gets payment_value
-     *
-     * @return float|null
-     */
-    public function getPaymentValue()
-    {
-        return $this->container['payment_value'];
-    }
-
-    /**
-     * Sets payment_value
-     *
-     * @param float|null $payment_value payment_value
-     *
-     * @return $this
-     */
-    public function setPaymentValue($payment_value)
-    {
-        $this->container['payment_value'] = $payment_value;
-
-        return $this;
-    }
-
-    /**
-     * Gets payment_date
-     *
-     * @return string|null
-     */
-    public function getPaymentDate()
-    {
-        return $this->container['payment_date'];
-    }
-
-    /**
-     * Sets payment_date
-     *
-     * @param string|null $payment_date Date in format parsable by PHP DateTime
-     *
-     * @return $this
-     */
-    public function setPaymentDate($payment_date)
-    {
-        $this->container['payment_date'] = $payment_date;
-
-        return $this;
-    }
-
-    /**
      * Gets issuer
      *
-     * @return \MimoGraphix\Uctoplus\Models\Issuer|null
+     * @return \MimoGraphix\Uctoplus\Models\Issuer
      */
     public function getIssuer()
     {
@@ -793,7 +772,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Sets issuer
      *
-     * @param \MimoGraphix\Uctoplus\Models\Issuer|null $issuer issuer
+     * @param \MimoGraphix\Uctoplus\Models\Issuer $issuer issuer
      *
      * @return $this
      */
@@ -807,7 +786,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Gets language
      *
-     * @return \MimoGraphix\Uctoplus\Models\Language|null
+     * @return \MimoGraphix\Uctoplus\Models\Language
      */
     public function getLanguage()
     {
@@ -817,7 +796,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Sets language
      *
-     * @param \MimoGraphix\Uctoplus\Models\Language|null $language language
+     * @param \MimoGraphix\Uctoplus\Models\Language $language language
      *
      * @return $this
      */
@@ -841,7 +820,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Sets note1
      *
-     * @param string|null $note1 note1
+     * @param string|null $note1 Markdown language allowed.
      *
      * @return $this
      */
@@ -865,7 +844,7 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Sets note2
      *
-     * @param string|null $note2 note2
+     * @param string|null $note2 Markdown language allowed.
      *
      * @return $this
      */
@@ -889,13 +868,181 @@ class Invoice implements ModelInterface, ArrayAccess
     /**
      * Sets note3
      *
-     * @param string|null $note3 note3
+     * @param string|null $note3 Markdown language allowed.
      *
      * @return $this
      */
     public function setNote3($note3)
     {
         $this->container['note3'] = $note3;
+
+        return $this;
+    }
+
+    /**
+     * Gets theme
+     *
+     * @return \MimoGraphix\Uctoplus\Models\Theme|null
+     */
+    public function getTheme()
+    {
+        return $this->container['theme'];
+    }
+
+    /**
+     * Sets theme
+     *
+     * @param \MimoGraphix\Uctoplus\Models\Theme|null $theme theme
+     *
+     * @return $this
+     */
+    public function setTheme($theme)
+    {
+        $this->container['theme'] = $theme;
+
+        return $this;
+    }
+
+    /**
+     * Gets logo_version
+     *
+     * @return int|null
+     */
+    public function getLogoVersion()
+    {
+        return $this->container['logo_version'];
+    }
+
+    /**
+     * Sets logo_version
+     *
+     * @param int|null $logo_version ID from [Moje Účto+](http://moje.uctoplus.sk/)
+     *
+     * @return $this
+     */
+    public function setLogoVersion($logo_version)
+    {
+        $this->container['logo_version'] = $logo_version;
+
+        return $this;
+    }
+
+    /**
+     * Gets signature_version
+     *
+     * @return int|null
+     */
+    public function getSignatureVersion()
+    {
+        return $this->container['signature_version'];
+    }
+
+    /**
+     * Sets signature_version
+     *
+     * @param int|null $signature_version ID from [Moje Účto+](http://moje.uctoplus.sk/)
+     *
+     * @return $this
+     */
+    public function setSignatureVersion($signature_version)
+    {
+        $this->container['signature_version'] = $signature_version;
+
+        return $this;
+    }
+
+    /**
+     * Gets delivery_type
+     *
+     * @return int|null
+     */
+    public function getDeliveryType()
+    {
+        return $this->container['delivery_type'];
+    }
+
+    /**
+     * Sets delivery_type
+     *
+     * @param int|null $delivery_type ID from [Moje Účto+](http://moje.uctoplus.sk/)
+     *
+     * @return $this
+     */
+    public function setDeliveryType($delivery_type)
+    {
+        $this->container['delivery_type'] = $delivery_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets payment_type
+     *
+     * @return int
+     */
+    public function getPaymentType()
+    {
+        return $this->container['payment_type'];
+    }
+
+    /**
+     * Sets payment_type
+     *
+     * @param int $payment_type ID from [Moje Účto+](http://moje.uctoplus.sk/)
+     *
+     * @return $this
+     */
+    public function setPaymentType($payment_type)
+    {
+        $this->container['payment_type'] = $payment_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency2
+     *
+     * @return \MimoGraphix\Uctoplus\Models\InvoiceCurrency2|null
+     */
+    public function getCurrency2()
+    {
+        return $this->container['currency2'];
+    }
+
+    /**
+     * Sets currency2
+     *
+     * @param \MimoGraphix\Uctoplus\Models\InvoiceCurrency2|null $currency2 currency2
+     *
+     * @return $this
+     */
+    public function setCurrency2($currency2)
+    {
+        $this->container['currency2'] = $currency2;
+
+        return $this;
+    }
+
+    /**
+     * Gets items
+     *
+     * @return object[]
+     */
+    public function getItems()
+    {
+        return $this->container['items'];
+    }
+
+    /**
+     * Sets items
+     *
+     * @param object[] $items Items in invoice
+     *
+     * @return $this
+     */
+    public function setItems($items)
+    {
+        $this->container['items'] = $items;
 
         return $this;
     }
@@ -925,193 +1072,121 @@ class Invoice implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets logo_version
-     *
-     * @return int|null
-     */
-    public function getLogoVersion()
-    {
-        return $this->container['logo_version'];
-    }
-
-    /**
-     * Sets logo_version
-     *
-     * @param int|null $logo_version ID from http://moje.uctoplus.sk/
-     *
-     * @return $this
-     */
-    public function setLogoVersion($logo_version)
-    {
-        $this->container['logo_version'] = $logo_version;
-
-        return $this;
-    }
-
-    /**
-     * Gets signature_version
-     *
-     * @return int|null
-     */
-    public function getSignatureVersion()
-    {
-        return $this->container['signature_version'];
-    }
-
-    /**
-     * Sets signature_version
-     *
-     * @param int|null $signature_version ID from http://moje.uctoplus.sk/
-     *
-     * @return $this
-     */
-    public function setSignatureVersion($signature_version)
-    {
-        $this->container['signature_version'] = $signature_version;
-
-        return $this;
-    }
-
-    /**
-     * Gets delivery_type
-     *
-     * @return int|null
-     */
-    public function getDeliveryType()
-    {
-        return $this->container['delivery_type'];
-    }
-
-    /**
-     * Sets delivery_type
-     *
-     * @param int|null $delivery_type ID from http://moje.uctoplus.sk/
-     *
-     * @return $this
-     */
-    public function setDeliveryType($delivery_type)
-    {
-        $this->container['delivery_type'] = $delivery_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets payment_type
-     *
-     * @return int
-     */
-    public function getPaymentType()
-    {
-        return $this->container['payment_type'];
-    }
-
-    /**
-     * Sets payment_type
-     *
-     * @param int $payment_type ID from http://moje.uctoplus.sk/
-     *
-     * @return $this
-     */
-    public function setPaymentType($payment_type)
-    {
-        $this->container['payment_type'] = $payment_type;
-
-        return $this;
-    }
-
-    /**
-     * Gets currency2_rate
+     * Gets discount
      *
      * @return float|null
      */
-    public function getCurrency2Rate()
+    public function getDiscount()
     {
-        return $this->container['currency2_rate'];
+        return $this->container['discount'];
     }
 
     /**
-     * Sets currency2_rate
+     * Sets discount
      *
-     * @param float|null $currency2_rate currency2_rate
+     * @param float|null $discount discount
      *
      * @return $this
      */
-    public function setCurrency2Rate($currency2_rate)
+    public function setDiscount($discount)
     {
-        $this->container['currency2_rate'] = $currency2_rate;
+        $this->container['discount'] = $discount;
 
         return $this;
     }
 
     /**
-     * Gets currency2
+     * Gets payment
+     *
+     * @return object|null
+     */
+    public function getPayment()
+    {
+        return $this->container['payment'];
+    }
+
+    /**
+     * Sets payment
+     *
+     * @param object|null $payment payment
+     *
+     * @return $this
+     */
+    public function setPayment($payment)
+    {
+        $this->container['payment'] = $payment;
+
+        return $this;
+    }
+
+    /**
+     * Gets file
+     *
+     * @return object|null
+     */
+    public function getFile()
+    {
+        return $this->container['file'];
+    }
+
+    /**
+     * Sets file
+     *
+     * @param object|null $file file
+     *
+     * @return $this
+     */
+    public function setFile($file)
+    {
+        $this->container['file'] = $file;
+
+        return $this;
+    }
+
+    /**
+     * Gets moje_uctoplus_url
      *
      * @return string|null
      */
-    public function getCurrency2()
+    public function getMojeUctoplusUrl()
     {
-        return $this->container['currency2'];
+        return $this->container['moje_uctoplus_url'];
     }
 
     /**
-     * Sets currency2
+     * Sets moje_uctoplus_url
      *
-     * @param string|null $currency2 3 letter code of Currency eg. EUR, GBP, CZK, ...
+     * @param string|null $moje_uctoplus_url moje_uctoplus_url
      *
      * @return $this
      */
-    public function setCurrency2($currency2)
+    public function setMojeUctoplusUrl($moje_uctoplus_url)
     {
-        $this->container['currency2'] = $currency2;
+        $this->container['moje_uctoplus_url'] = $moje_uctoplus_url;
 
         return $this;
     }
 
     /**
-     * Gets invoice_number_counter
+     * Gets summary
      *
-     * @return int
+     * @return object|null
      */
-    public function getInvoiceNumberCounter()
+    public function getSummary()
     {
-        return $this->container['invoice_number_counter'];
+        return $this->container['summary'];
     }
 
     /**
-     * Sets invoice_number_counter
+     * Sets summary
      *
-     * @param int $invoice_number_counter ID from http://moje.uctoplus.sk/
+     * @param object|null $summary summary
      *
      * @return $this
      */
-    public function setInvoiceNumberCounter($invoice_number_counter)
+    public function setSummary($summary)
     {
-        $this->container['invoice_number_counter'] = $invoice_number_counter;
-
-        return $this;
-    }
-
-    /**
-     * Gets invoice_template
-     *
-     * @return int|null
-     */
-    public function getInvoiceTemplate()
-    {
-        return $this->container['invoice_template'];
-    }
-
-    /**
-     * Sets invoice_template
-     *
-     * @param int|null $invoice_template ID from http://moje.uctoplus.sk/
-     *
-     * @return $this
-     */
-    public function setInvoiceTemplate($invoice_template)
-    {
-        $this->container['invoice_template'] = $invoice_template;
+        $this->container['summary'] = $summary;
 
         return $this;
     }

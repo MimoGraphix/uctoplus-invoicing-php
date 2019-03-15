@@ -1,6 +1,6 @@
 <?php
 /**
- * Issuer
+ * Payment
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \MimoGraphix\Uctoplus\ObjectSerializer;
 
 /**
- * Issuer Class Doc Comment
+ * Payment Class Doc Comment
  *
  * @category Class
  * @package  MimoGraphix\Uctoplus
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Issuer implements ModelInterface, ArrayAccess
+class Payment implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Issuer implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Issuer';
+    protected static $openAPIModelName = 'Payment';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,8 @@ class Issuer implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'phone' => 'string',
-        'web' => 'string',
-        'email' => 'string'
+        'total_payed' => 'float',
+        'date' => '\DateTime'
     ];
 
     /**
@@ -69,10 +67,8 @@ class Issuer implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'phone' => null,
-        'web' => null,
-        'email' => null
+        'total_payed' => null,
+        'date' => 'date'
     ];
 
     /**
@@ -102,10 +98,8 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'phone' => 'phone',
-        'web' => 'web',
-        'email' => 'email'
+        'total_payed' => 'totalPayed',
+        'date' => 'date'
     ];
 
     /**
@@ -114,10 +108,8 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'phone' => 'setPhone',
-        'web' => 'setWeb',
-        'email' => 'setEmail'
+        'total_payed' => 'setTotalPayed',
+        'date' => 'setDate'
     ];
 
     /**
@@ -126,10 +118,8 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'phone' => 'getPhone',
-        'web' => 'getWeb',
-        'email' => 'getEmail'
+        'total_payed' => 'getTotalPayed',
+        'date' => 'getDate'
     ];
 
     /**
@@ -192,10 +182,8 @@ class Issuer implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
-        $this->container['web'] = isset($data['web']) ? $data['web'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
+        $this->container['total_payed'] = isset($data['total_payed']) ? $data['total_payed'] : null;
+        $this->container['date'] = isset($data['date']) ? $data['date'] : null;
     }
 
     /**
@@ -207,8 +195,11 @@ class Issuer implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
+        if ($this->container['total_payed'] === null) {
+            $invalidProperties[] = "'total_payed' can't be null";
+        }
+        if ($this->container['date'] === null) {
+            $invalidProperties[] = "'date' can't be null";
         }
         return $invalidProperties;
     }
@@ -226,97 +217,49 @@ class Issuer implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets name
+     * Gets total_payed
      *
-     * @return string
+     * @return float
      */
-    public function getName()
+    public function getTotalPayed()
     {
-        return $this->container['name'];
+        return $this->container['total_payed'];
     }
 
     /**
-     * Sets name
+     * Sets total_payed
      *
-     * @param string $name name
+     * @param float $total_payed total_payed
      *
      * @return $this
      */
-    public function setName($name)
+    public function setTotalPayed($total_payed)
     {
-        $this->container['name'] = $name;
+        $this->container['total_payed'] = $total_payed;
 
         return $this;
     }
 
     /**
-     * Gets phone
+     * Gets date
      *
-     * @return string|null
+     * @return \DateTime
      */
-    public function getPhone()
+    public function getDate()
     {
-        return $this->container['phone'];
+        return $this->container['date'];
     }
 
     /**
-     * Sets phone
+     * Sets date
      *
-     * @param string|null $phone phone
+     * @param \DateTime $date Date in format parsable by PHP DateTime Class (eg.: yyyy-mm-dd)
      *
      * @return $this
      */
-    public function setPhone($phone)
+    public function setDate($date)
     {
-        $this->container['phone'] = $phone;
-
-        return $this;
-    }
-
-    /**
-     * Gets web
-     *
-     * @return string|null
-     */
-    public function getWeb()
-    {
-        return $this->container['web'];
-    }
-
-    /**
-     * Sets web
-     *
-     * @param string|null $web web
-     *
-     * @return $this
-     */
-    public function setWeb($web)
-    {
-        $this->container['web'] = $web;
-
-        return $this;
-    }
-
-    /**
-     * Gets email
-     *
-     * @return string|null
-     */
-    public function getEmail()
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     *
-     * @param string|null $email email
-     *
-     * @return $this
-     */
-    public function setEmail($email)
-    {
-        $this->container['email'] = $email;
+        $this->container['date'] = $date;
 
         return $this;
     }

@@ -1,19 +1,19 @@
-# MimoGraphix\Uctoplus\IncommingInvoiceApi
+# MimoGraphix\Uctoplus\AddressListApi
 
 All URIs are relative to *https://moje.uctoplus.sk/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**incommingInvoiceAddPost**](IncommingInvoiceApi.md#incommingInvoiceAddPost) | **POST** /incomming-invoice/add | Create Incomming Invoice.
-[**incommingInvoiceIdGetGet**](IncommingInvoiceApi.md#incommingInvoiceIdGetGet) | **GET** /incomming-invoice/{id}/get | Returns Incomming Invoice.
+[**getAddressById**](AddressListApi.md#getAddressById) | **GET** /address-list/{id}/get | getAddressById.
+[**getAddressList**](AddressListApi.md#getAddressList) | **GET** /address-list | getAddressList
 
 
-# **incommingInvoiceAddPost**
-> \MimoGraphix\Uctoplus\Models\Response incommingInvoiceAddPost($incomming_invoice)
+# **getAddressById**
+> \MimoGraphix\Uctoplus\Models\Address getAddressById($id)
 
-Create Incomming Invoice.
+getAddressById.
 
-### _In Developement_ !!!
+Returns Address.
 
 ### Example
 ```php
@@ -25,19 +25,19 @@ $config = MimoGraphix\Uctoplus\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = MimoGraphix\Uctoplus\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api_key', 'Bearer');
 
-$apiInstance = new MimoGraphix\Uctoplus\Api\IncommingInvoiceApi(
+$apiInstance = new MimoGraphix\Uctoplus\Api\AddressListApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$incomming_invoice = new \MimoGraphix\Uctoplus\Models\IncommingInvoice(); // \MimoGraphix\Uctoplus\Models\IncommingInvoice | Incomming Invoice
+$id = 56; // int | Address identifier
 
 try {
-    $result = $apiInstance->incommingInvoiceAddPost($incomming_invoice);
+    $result = $apiInstance->getAddressById($id);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling IncommingInvoiceApi->incommingInvoiceAddPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AddressListApi->getAddressById: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -46,11 +46,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **incomming_invoice** | [**\MimoGraphix\Uctoplus\Models\IncommingInvoice**](../Model/IncommingInvoice.md)| Incomming Invoice |
+ **id** | **int**| Address identifier |
 
 ### Return type
 
-[**\MimoGraphix\Uctoplus\Models\Response**](../Model/Response.md)
+[**\MimoGraphix\Uctoplus\Models\Address**](../Model/Address.md)
 
 ### Authorization
 
@@ -58,17 +58,17 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **incommingInvoiceIdGetGet**
-> \MimoGraphix\Uctoplus\Models\Response incommingInvoiceIdGetGet($id)
+# **getAddressList**
+> \MimoGraphix\Uctoplus\Models\Address[] getAddressList()
 
-Returns Incomming Invoice.
+getAddressList
 
-### _In Developement_ !!!
+Return all Addresses from Company Address List.
 
 ### Example
 ```php
@@ -80,32 +80,28 @@ $config = MimoGraphix\Uctoplus\Configuration::getDefaultConfiguration()->setApiK
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = MimoGraphix\Uctoplus\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api_key', 'Bearer');
 
-$apiInstance = new MimoGraphix\Uctoplus\Api\IncommingInvoiceApi(
+$apiInstance = new MimoGraphix\Uctoplus\Api\AddressListApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$id = 'id_example'; // string | the user identifier, as userId
 
 try {
-    $result = $apiInstance->incommingInvoiceIdGetGet($id);
+    $result = $apiInstance->getAddressList();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling IncommingInvoiceApi->incommingInvoiceIdGetGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AddressListApi->getAddressList: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| the user identifier, as userId |
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**\MimoGraphix\Uctoplus\Models\Response**](../Model/Response.md)
+[**\MimoGraphix\Uctoplus\Models\Address[]**](../Model/Address.md)
 
 ### Authorization
 

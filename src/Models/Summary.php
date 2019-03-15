@@ -1,6 +1,6 @@
 <?php
 /**
- * Issuer
+ * Summary
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \MimoGraphix\Uctoplus\ObjectSerializer;
 
 /**
- * Issuer Class Doc Comment
+ * Summary Class Doc Comment
  *
  * @category Class
  * @package  MimoGraphix\Uctoplus
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Issuer implements ModelInterface, ArrayAccess
+class Summary implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Issuer implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Issuer';
+    protected static $openAPIModelName = 'Summary';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,12 @@ class Issuer implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'phone' => 'string',
-        'web' => 'string',
-        'email' => 'string'
+        'total_without_tax' => 'float',
+        'total_with_tax' => 'float',
+        'total_tax' => 'float',
+        'payed' => 'float',
+        'total_to_pay' => 'float',
+        'taxes' => '\MimoGraphix\Uctoplus\Models\SummaryTaxes[]'
     ];
 
     /**
@@ -69,10 +71,12 @@ class Issuer implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'phone' => null,
-        'web' => null,
-        'email' => null
+        'total_without_tax' => null,
+        'total_with_tax' => null,
+        'total_tax' => null,
+        'payed' => null,
+        'total_to_pay' => null,
+        'taxes' => null
     ];
 
     /**
@@ -102,10 +106,12 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'phone' => 'phone',
-        'web' => 'web',
-        'email' => 'email'
+        'total_without_tax' => 'totalWithoutTax',
+        'total_with_tax' => 'totalWithTax',
+        'total_tax' => 'totalTax',
+        'payed' => 'payed',
+        'total_to_pay' => 'totalToPay',
+        'taxes' => 'taxes'
     ];
 
     /**
@@ -114,10 +120,12 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'phone' => 'setPhone',
-        'web' => 'setWeb',
-        'email' => 'setEmail'
+        'total_without_tax' => 'setTotalWithoutTax',
+        'total_with_tax' => 'setTotalWithTax',
+        'total_tax' => 'setTotalTax',
+        'payed' => 'setPayed',
+        'total_to_pay' => 'setTotalToPay',
+        'taxes' => 'setTaxes'
     ];
 
     /**
@@ -126,10 +134,12 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'phone' => 'getPhone',
-        'web' => 'getWeb',
-        'email' => 'getEmail'
+        'total_without_tax' => 'getTotalWithoutTax',
+        'total_with_tax' => 'getTotalWithTax',
+        'total_tax' => 'getTotalTax',
+        'payed' => 'getPayed',
+        'total_to_pay' => 'getTotalToPay',
+        'taxes' => 'getTaxes'
     ];
 
     /**
@@ -192,10 +202,12 @@ class Issuer implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
-        $this->container['web'] = isset($data['web']) ? $data['web'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
+        $this->container['total_without_tax'] = isset($data['total_without_tax']) ? $data['total_without_tax'] : null;
+        $this->container['total_with_tax'] = isset($data['total_with_tax']) ? $data['total_with_tax'] : null;
+        $this->container['total_tax'] = isset($data['total_tax']) ? $data['total_tax'] : null;
+        $this->container['payed'] = isset($data['payed']) ? $data['payed'] : null;
+        $this->container['total_to_pay'] = isset($data['total_to_pay']) ? $data['total_to_pay'] : null;
+        $this->container['taxes'] = isset($data['taxes']) ? $data['taxes'] : null;
     }
 
     /**
@@ -207,9 +219,6 @@ class Issuer implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -226,97 +235,145 @@ class Issuer implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets name
+     * Gets total_without_tax
      *
-     * @return string
+     * @return float|null
      */
-    public function getName()
+    public function getTotalWithoutTax()
     {
-        return $this->container['name'];
+        return $this->container['total_without_tax'];
     }
 
     /**
-     * Sets name
+     * Sets total_without_tax
      *
-     * @param string $name name
+     * @param float|null $total_without_tax total_without_tax
      *
      * @return $this
      */
-    public function setName($name)
+    public function setTotalWithoutTax($total_without_tax)
     {
-        $this->container['name'] = $name;
+        $this->container['total_without_tax'] = $total_without_tax;
 
         return $this;
     }
 
     /**
-     * Gets phone
+     * Gets total_with_tax
      *
-     * @return string|null
+     * @return float|null
      */
-    public function getPhone()
+    public function getTotalWithTax()
     {
-        return $this->container['phone'];
+        return $this->container['total_with_tax'];
     }
 
     /**
-     * Sets phone
+     * Sets total_with_tax
      *
-     * @param string|null $phone phone
+     * @param float|null $total_with_tax total_with_tax
      *
      * @return $this
      */
-    public function setPhone($phone)
+    public function setTotalWithTax($total_with_tax)
     {
-        $this->container['phone'] = $phone;
+        $this->container['total_with_tax'] = $total_with_tax;
 
         return $this;
     }
 
     /**
-     * Gets web
+     * Gets total_tax
      *
-     * @return string|null
+     * @return float|null
      */
-    public function getWeb()
+    public function getTotalTax()
     {
-        return $this->container['web'];
+        return $this->container['total_tax'];
     }
 
     /**
-     * Sets web
+     * Sets total_tax
      *
-     * @param string|null $web web
+     * @param float|null $total_tax total_tax
      *
      * @return $this
      */
-    public function setWeb($web)
+    public function setTotalTax($total_tax)
     {
-        $this->container['web'] = $web;
+        $this->container['total_tax'] = $total_tax;
 
         return $this;
     }
 
     /**
-     * Gets email
+     * Gets payed
      *
-     * @return string|null
+     * @return float|null
      */
-    public function getEmail()
+    public function getPayed()
     {
-        return $this->container['email'];
+        return $this->container['payed'];
     }
 
     /**
-     * Sets email
+     * Sets payed
      *
-     * @param string|null $email email
+     * @param float|null $payed payed
      *
      * @return $this
      */
-    public function setEmail($email)
+    public function setPayed($payed)
     {
-        $this->container['email'] = $email;
+        $this->container['payed'] = $payed;
+
+        return $this;
+    }
+
+    /**
+     * Gets total_to_pay
+     *
+     * @return float|null
+     */
+    public function getTotalToPay()
+    {
+        return $this->container['total_to_pay'];
+    }
+
+    /**
+     * Sets total_to_pay
+     *
+     * @param float|null $total_to_pay total_to_pay
+     *
+     * @return $this
+     */
+    public function setTotalToPay($total_to_pay)
+    {
+        $this->container['total_to_pay'] = $total_to_pay;
+
+        return $this;
+    }
+
+    /**
+     * Gets taxes
+     *
+     * @return \MimoGraphix\Uctoplus\Models\SummaryTaxes[]|null
+     */
+    public function getTaxes()
+    {
+        return $this->container['taxes'];
+    }
+
+    /**
+     * Sets taxes
+     *
+     * @param \MimoGraphix\Uctoplus\Models\SummaryTaxes[]|null $taxes taxes
+     *
+     * @return $this
+     */
+    public function setTaxes($taxes)
+    {
+        $this->container['taxes'] = $taxes;
 
         return $this;
     }

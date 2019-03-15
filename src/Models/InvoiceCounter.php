@@ -1,6 +1,6 @@
 <?php
 /**
- * Issuer
+ * InvoiceCounter
  *
  * PHP version 5
  *
@@ -33,14 +33,15 @@ use \ArrayAccess;
 use \MimoGraphix\Uctoplus\ObjectSerializer;
 
 /**
- * Issuer Class Doc Comment
+ * InvoiceCounter Class Doc Comment
  *
  * @category Class
+ * @description ID from [Moje Účto+](http://moje.uctoplus.sk/)
  * @package  MimoGraphix\Uctoplus
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Issuer implements ModelInterface, ArrayAccess
+class InvoiceCounter implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class Issuer implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Issuer';
+    protected static $openAPIModelName = 'InvoiceCounter';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +58,9 @@ class Issuer implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
+        'id' => 'int',
         'name' => 'string',
-        'phone' => 'string',
-        'web' => 'string',
-        'email' => 'string'
+        'invoice_type' => 'string'
     ];
 
     /**
@@ -69,10 +69,9 @@ class Issuer implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
+        'id' => 'int64',
         'name' => null,
-        'phone' => null,
-        'web' => null,
-        'email' => null
+        'invoice_type' => null
     ];
 
     /**
@@ -102,10 +101,9 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
         'name' => 'name',
-        'phone' => 'phone',
-        'web' => 'web',
-        'email' => 'email'
+        'invoice_type' => 'invoiceType'
     ];
 
     /**
@@ -114,10 +112,9 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
         'name' => 'setName',
-        'phone' => 'setPhone',
-        'web' => 'setWeb',
-        'email' => 'setEmail'
+        'invoice_type' => 'setInvoiceType'
     ];
 
     /**
@@ -126,10 +123,9 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
         'name' => 'getName',
-        'phone' => 'getPhone',
-        'web' => 'getWeb',
-        'email' => 'getEmail'
+        'invoice_type' => 'getInvoiceType'
     ];
 
     /**
@@ -192,10 +188,9 @@ class Issuer implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
-        $this->container['web'] = isset($data['web']) ? $data['web'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
+        $this->container['invoice_type'] = isset($data['invoice_type']) ? $data['invoice_type'] : null;
     }
 
     /**
@@ -207,9 +202,6 @@ class Issuer implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -226,9 +218,33 @@ class Issuer implements ModelInterface, ArrayAccess
 
 
     /**
+     * Gets id
+     *
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param int|null $id id
+     *
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -238,7 +254,7 @@ class Issuer implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string $name name
+     * @param string|null $name name
      *
      * @return $this
      */
@@ -250,73 +266,25 @@ class Issuer implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets phone
+     * Gets invoice_type
      *
      * @return string|null
      */
-    public function getPhone()
+    public function getInvoiceType()
     {
-        return $this->container['phone'];
+        return $this->container['invoice_type'];
     }
 
     /**
-     * Sets phone
+     * Sets invoice_type
      *
-     * @param string|null $phone phone
+     * @param string|null $invoice_type invoice_type
      *
      * @return $this
      */
-    public function setPhone($phone)
+    public function setInvoiceType($invoice_type)
     {
-        $this->container['phone'] = $phone;
-
-        return $this;
-    }
-
-    /**
-     * Gets web
-     *
-     * @return string|null
-     */
-    public function getWeb()
-    {
-        return $this->container['web'];
-    }
-
-    /**
-     * Sets web
-     *
-     * @param string|null $web web
-     *
-     * @return $this
-     */
-    public function setWeb($web)
-    {
-        $this->container['web'] = $web;
-
-        return $this;
-    }
-
-    /**
-     * Gets email
-     *
-     * @return string|null
-     */
-    public function getEmail()
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     *
-     * @param string|null $email email
-     *
-     * @return $this
-     */
-    public function setEmail($email)
-    {
-        $this->container['email'] = $email;
+        $this->container['invoice_type'] = $invoice_type;
 
         return $this;
     }

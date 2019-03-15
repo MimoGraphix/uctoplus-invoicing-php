@@ -13,7 +13,7 @@
 /**
  * Moje Účto+ API
  *
- * API description in Markdown.
+ * Moje Účto+ API is avaliable in test mode at `https://dev.uctoplus.eu/api/v2`.  Production enviroment is located at `https://moje.uctoplus.sk/api/v2`.  All comunication with API is encoded in UTF-8. This REST API is based on Open API v3 standard.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: helpdesk@uctoplus.sk
@@ -57,13 +57,15 @@ class Address implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
+        'id' => 'int',
         'name' => 'string',
         'street' => 'string',
         'city' => 'string',
         'country' => 'string',
         'sk_ico' => 'int',
         'sk_dic' => 'int',
-        'vat' => 'string'
+        'vat' => 'string',
+        'internal_id' => 'int'
     ];
 
     /**
@@ -72,13 +74,15 @@ class Address implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
+        'id' => 'int64',
         'name' => null,
         'street' => null,
         'city' => null,
         'country' => null,
         'sk_ico' => 'int32',
         'sk_dic' => 'int32',
-        'vat' => null
+        'vat' => null,
+        'internal_id' => 'int32'
     ];
 
     /**
@@ -108,13 +112,15 @@ class Address implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
         'name' => 'name',
         'street' => 'street',
         'city' => 'city',
         'country' => 'country',
         'sk_ico' => 'sk_ico',
         'sk_dic' => 'sk_dic',
-        'vat' => 'vat'
+        'vat' => 'vat',
+        'internal_id' => 'internal_id'
     ];
 
     /**
@@ -123,13 +129,15 @@ class Address implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
         'name' => 'setName',
         'street' => 'setStreet',
         'city' => 'setCity',
         'country' => 'setCountry',
         'sk_ico' => 'setSkIco',
         'sk_dic' => 'setSkDic',
-        'vat' => 'setVat'
+        'vat' => 'setVat',
+        'internal_id' => 'setInternalId'
     ];
 
     /**
@@ -138,13 +146,15 @@ class Address implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
         'name' => 'getName',
         'street' => 'getStreet',
         'city' => 'getCity',
         'country' => 'getCountry',
         'sk_ico' => 'getSkIco',
         'sk_dic' => 'getSkDic',
-        'vat' => 'getVat'
+        'vat' => 'getVat',
+        'internal_id' => 'getInternalId'
     ];
 
     /**
@@ -207,13 +217,15 @@ class Address implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['street'] = isset($data['street']) ? $data['street'] : null;
         $this->container['city'] = isset($data['city']) ? $data['city'] : null;
         $this->container['country'] = isset($data['country']) ? $data['country'] : 'SVK';
         $this->container['sk_ico'] = isset($data['sk_ico']) ? $data['sk_ico'] : null;
         $this->container['sk_dic'] = isset($data['sk_dic']) ? $data['sk_dic'] : null;
-        $this->container['vat'] = isset($data['vat']) ? $data['vat'] : 'null';
+        $this->container['vat'] = isset($data['vat']) ? $data['vat'] : null;
+        $this->container['internal_id'] = isset($data['internal_id']) ? $data['internal_id'] : null;
     }
 
     /**
@@ -234,6 +246,9 @@ class Address implements ModelInterface, ArrayAccess
         if ($this->container['city'] === null) {
             $invalidProperties[] = "'city' can't be null";
         }
+        if ($this->container['country'] === null) {
+            $invalidProperties[] = "'country' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -248,6 +263,30 @@ class Address implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets id
+     *
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param int|null $id id
+     *
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
 
     /**
      * Gets name
@@ -324,7 +363,7 @@ class Address implements ModelInterface, ArrayAccess
     /**
      * Gets country
      *
-     * @return string|null
+     * @return string
      */
     public function getCountry()
     {
@@ -334,7 +373,7 @@ class Address implements ModelInterface, ArrayAccess
     /**
      * Sets country
      *
-     * @param string|null $country 3 letter code of Country eg. SVK, CZE, ...
+     * @param string $country 3 letter code of Country [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
      *
      * @return $this
      */
@@ -413,6 +452,30 @@ class Address implements ModelInterface, ArrayAccess
     public function setVat($vat)
     {
         $this->container['vat'] = $vat;
+
+        return $this;
+    }
+
+    /**
+     * Gets internal_id
+     *
+     * @return int|null
+     */
+    public function getInternalId()
+    {
+        return $this->container['internal_id'];
+    }
+
+    /**
+     * Sets internal_id
+     *
+     * @param int|null $internal_id Internal system ID, contact address can be paired with ID in your system and internal_id in Moje Účto+
+     *
+     * @return $this
+     */
+    public function setInternalId($internal_id)
+    {
+        $this->container['internal_id'] = $internal_id;
 
         return $this;
     }

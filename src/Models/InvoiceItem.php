@@ -1,6 +1,6 @@
 <?php
 /**
- * Issuer
+ * InvoiceItem
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \MimoGraphix\Uctoplus\ObjectSerializer;
 
 /**
- * Issuer Class Doc Comment
+ * InvoiceItem Class Doc Comment
  *
  * @category Class
  * @package  MimoGraphix\Uctoplus
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Issuer implements ModelInterface, ArrayAccess
+class InvoiceItem implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Issuer implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Issuer';
+    protected static $openAPIModelName = 'InvoiceItem';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,14 @@ class Issuer implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
+        'id' => 'int',
         'name' => 'string',
-        'phone' => 'string',
-        'web' => 'string',
-        'email' => 'string'
+        'description' => 'string',
+        'quantity' => 'float',
+        'price_without_tax' => 'float',
+        'tax_percentage' => 'float',
+        'type' => 'string',
+        'discount' => 'float'
     ];
 
     /**
@@ -69,10 +73,14 @@ class Issuer implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
+        'id' => 'int64',
         'name' => null,
-        'phone' => null,
-        'web' => null,
-        'email' => null
+        'description' => null,
+        'quantity' => null,
+        'price_without_tax' => null,
+        'tax_percentage' => null,
+        'type' => null,
+        'discount' => null
     ];
 
     /**
@@ -102,10 +110,14 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
         'name' => 'name',
-        'phone' => 'phone',
-        'web' => 'web',
-        'email' => 'email'
+        'description' => 'description',
+        'quantity' => 'quantity',
+        'price_without_tax' => 'price_without_tax',
+        'tax_percentage' => 'tax_percentage',
+        'type' => 'type',
+        'discount' => 'discount'
     ];
 
     /**
@@ -114,10 +126,14 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
         'name' => 'setName',
-        'phone' => 'setPhone',
-        'web' => 'setWeb',
-        'email' => 'setEmail'
+        'description' => 'setDescription',
+        'quantity' => 'setQuantity',
+        'price_without_tax' => 'setPriceWithoutTax',
+        'tax_percentage' => 'setTaxPercentage',
+        'type' => 'setType',
+        'discount' => 'setDiscount'
     ];
 
     /**
@@ -126,10 +142,14 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
         'name' => 'getName',
-        'phone' => 'getPhone',
-        'web' => 'getWeb',
-        'email' => 'getEmail'
+        'description' => 'getDescription',
+        'quantity' => 'getQuantity',
+        'price_without_tax' => 'getPriceWithoutTax',
+        'tax_percentage' => 'getTaxPercentage',
+        'type' => 'getType',
+        'discount' => 'getDiscount'
     ];
 
     /**
@@ -192,10 +212,14 @@ class Issuer implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
-        $this->container['web'] = isset($data['web']) ? $data['web'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['quantity'] = isset($data['quantity']) ? $data['quantity'] : null;
+        $this->container['price_without_tax'] = isset($data['price_without_tax']) ? $data['price_without_tax'] : null;
+        $this->container['tax_percentage'] = isset($data['tax_percentage']) ? $data['tax_percentage'] : 0.0;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['discount'] = isset($data['discount']) ? $data['discount'] : 0.0;
     }
 
     /**
@@ -209,6 +233,15 @@ class Issuer implements ModelInterface, ArrayAccess
 
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['quantity'] === null) {
+            $invalidProperties[] = "'quantity' can't be null";
+        }
+        if ($this->container['price_without_tax'] === null) {
+            $invalidProperties[] = "'price_without_tax' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
         return $invalidProperties;
     }
@@ -224,6 +257,30 @@ class Issuer implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets id
+     *
+     * @return int|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param int|null $id id
+     *
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
 
     /**
      * Gets name
@@ -250,73 +307,145 @@ class Issuer implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets phone
+     * Gets description
      *
      * @return string|null
      */
-    public function getPhone()
+    public function getDescription()
     {
-        return $this->container['phone'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets phone
+     * Sets description
      *
-     * @param string|null $phone phone
+     * @param string|null $description Description of item. Markdown language allowed.
      *
      * @return $this
      */
-    public function setPhone($phone)
+    public function setDescription($description)
     {
-        $this->container['phone'] = $phone;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets web
+     * Gets quantity
      *
-     * @return string|null
+     * @return float
      */
-    public function getWeb()
+    public function getQuantity()
     {
-        return $this->container['web'];
+        return $this->container['quantity'];
     }
 
     /**
-     * Sets web
+     * Sets quantity
      *
-     * @param string|null $web web
+     * @param float $quantity quantity
      *
      * @return $this
      */
-    public function setWeb($web)
+    public function setQuantity($quantity)
     {
-        $this->container['web'] = $web;
+        $this->container['quantity'] = $quantity;
 
         return $this;
     }
 
     /**
-     * Gets email
+     * Gets price_without_tax
      *
-     * @return string|null
+     * @return float
      */
-    public function getEmail()
+    public function getPriceWithoutTax()
     {
-        return $this->container['email'];
+        return $this->container['price_without_tax'];
     }
 
     /**
-     * Sets email
+     * Sets price_without_tax
      *
-     * @param string|null $email email
+     * @param float $price_without_tax price_without_tax
      *
      * @return $this
      */
-    public function setEmail($email)
+    public function setPriceWithoutTax($price_without_tax)
     {
-        $this->container['email'] = $email;
+        $this->container['price_without_tax'] = $price_without_tax;
+
+        return $this;
+    }
+
+    /**
+     * Gets tax_percentage
+     *
+     * @return float|null
+     */
+    public function getTaxPercentage()
+    {
+        return $this->container['tax_percentage'];
+    }
+
+    /**
+     * Sets tax_percentage
+     *
+     * @param float|null $tax_percentage tax_percentage
+     *
+     * @return $this
+     */
+    public function setTaxPercentage($tax_percentage)
+    {
+        $this->container['tax_percentage'] = $tax_percentage;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type type
+     *
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets discount
+     *
+     * @return float|null
+     */
+    public function getDiscount()
+    {
+        return $this->container['discount'];
+    }
+
+    /**
+     * Sets discount
+     *
+     * @param float|null $discount discount
+     *
+     * @return $this
+     */
+    public function setDiscount($discount)
+    {
+        $this->container['discount'] = $discount;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * InvoiceType
+ * Theme
  *
  * PHP version 5
  *
@@ -13,7 +13,7 @@
 /**
  * Moje Účto+ API
  *
- * API description in Markdown.
+ * Moje Účto+ API is avaliable in test mode at `https://dev.uctoplus.eu/api/v2`.  Production enviroment is located at `https://moje.uctoplus.sk/api/v2`.  All comunication with API is encoded in UTF-8. This REST API is based on Open API v3 standard.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: helpdesk@uctoplus.sk
@@ -31,25 +31,21 @@ namespace MimoGraphix\Uctoplus\Models;
 use \MimoGraphix\Uctoplus\ObjectSerializer;
 
 /**
- * InvoiceType Class Doc Comment
+ * Theme Class Doc Comment
  *
  * @category Class
- * @description * &#x60;1&#x60; - Invocie * &#x60;2&#x60; - Proforma Invoice * &#x60;3&#x60; - Dobropis * &#x60;4&#x60; - Price Quotation * &#x60;5&#x60; - Dodací list * &#x60;6&#x60; - VAT Proof
  * @package  MimoGraphix\Uctoplus
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class InvoiceType
+class Theme
 {
     /**
      * Possible values of this enum
      */
-    const INVOICE = 'TYPE_INVOICE';
-    const PROFORMA_INVOICE = 'TYPE_PROFORMA_INVOICE';
-    const DOBROPIS = 'TYPE_DOBROPIS';
-    const PRICE_QUOTATION = 'TYPE_PRICE_QUOTATION';
-    const DODACI_LIST = 'TYPE_DODACI_LIST';
-    const VAT_PROOF = 'TYPE_VAT_PROOF';
+    const 1 = 1;
+    const 2 = 2;
+    const 3 = 3;
     
     /**
      * Gets allowable values of the enum
@@ -58,12 +54,9 @@ class InvoiceType
     public static function getAllowableEnumValues()
     {
         return [
-            self::INVOICE,
-            self::PROFORMA_INVOICE,
-            self::DOBROPIS,
-            self::PRICE_QUOTATION,
-            self::DODACI_LIST,
-            self::VAT_PROOF,
+            self::1,
+            self::2,
+            self::3,
         ];
     }
 }

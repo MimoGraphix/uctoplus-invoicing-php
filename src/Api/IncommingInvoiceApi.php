@@ -12,7 +12,7 @@
 /**
  * Moje Účto+ API
  *
- * API description in Markdown.
+ * Moje Účto+ API is avaliable in test mode at `https://dev.uctoplus.eu/api/v2`.  Production enviroment is located at `https://moje.uctoplus.sk/api/v2`.  All comunication with API is encoded in UTF-8. This REST API is based on Open API v3 standard.
  *
  * OpenAPI spec version: 2.0.0
  * Contact: helpdesk@uctoplus.sk
@@ -161,7 +161,7 @@ class IncommingInvoiceApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                default:
+                case 400:
                     if ('\MimoGraphix\Uctoplus\Models\ErrorModel' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
@@ -199,7 +199,7 @@ class IncommingInvoiceApi
                     );
                     $e->setResponseObject($data);
                     break;
-                default:
+                case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\MimoGraphix\Uctoplus\Models\ErrorModel',
@@ -453,7 +453,7 @@ class IncommingInvoiceApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                default:
+                case 400:
                     if ('\MimoGraphix\Uctoplus\Models\ErrorModel' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
@@ -491,7 +491,7 @@ class IncommingInvoiceApi
                     );
                     $e->setResponseObject($data);
                     break;
-                default:
+                case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\MimoGraphix\Uctoplus\Models\ErrorModel',

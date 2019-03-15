@@ -1,6 +1,6 @@
 <?php
 /**
- * Issuer
+ * SummaryTaxes
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \MimoGraphix\Uctoplus\ObjectSerializer;
 
 /**
- * Issuer Class Doc Comment
+ * SummaryTaxes Class Doc Comment
  *
  * @category Class
  * @package  MimoGraphix\Uctoplus
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Issuer implements ModelInterface, ArrayAccess
+class SummaryTaxes implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Issuer implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Issuer';
+    protected static $openAPIModelName = 'Summary_taxes';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +57,9 @@ class Issuer implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'name' => 'string',
-        'phone' => 'string',
-        'web' => 'string',
-        'email' => 'string'
+        'percentage' => 'float',
+        'total' => 'float',
+        'payed' => 'float'
     ];
 
     /**
@@ -69,10 +68,9 @@ class Issuer implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'name' => null,
-        'phone' => null,
-        'web' => null,
-        'email' => null
+        'percentage' => null,
+        'total' => null,
+        'payed' => null
     ];
 
     /**
@@ -102,10 +100,9 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'phone' => 'phone',
-        'web' => 'web',
-        'email' => 'email'
+        'percentage' => 'percentage',
+        'total' => 'total',
+        'payed' => 'payed'
     ];
 
     /**
@@ -114,10 +111,9 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'phone' => 'setPhone',
-        'web' => 'setWeb',
-        'email' => 'setEmail'
+        'percentage' => 'setPercentage',
+        'total' => 'setTotal',
+        'payed' => 'setPayed'
     ];
 
     /**
@@ -126,10 +122,9 @@ class Issuer implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'phone' => 'getPhone',
-        'web' => 'getWeb',
-        'email' => 'getEmail'
+        'percentage' => 'getPercentage',
+        'total' => 'getTotal',
+        'payed' => 'getPayed'
     ];
 
     /**
@@ -192,10 +187,9 @@ class Issuer implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
-        $this->container['web'] = isset($data['web']) ? $data['web'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
+        $this->container['percentage'] = isset($data['percentage']) ? $data['percentage'] : null;
+        $this->container['total'] = isset($data['total']) ? $data['total'] : null;
+        $this->container['payed'] = isset($data['payed']) ? $data['payed'] : null;
     }
 
     /**
@@ -207,9 +201,6 @@ class Issuer implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -226,97 +217,73 @@ class Issuer implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets name
+     * Gets percentage
      *
-     * @return string
+     * @return float|null
      */
-    public function getName()
+    public function getPercentage()
     {
-        return $this->container['name'];
+        return $this->container['percentage'];
     }
 
     /**
-     * Sets name
+     * Sets percentage
      *
-     * @param string $name name
+     * @param float|null $percentage percentage
      *
      * @return $this
      */
-    public function setName($name)
+    public function setPercentage($percentage)
     {
-        $this->container['name'] = $name;
+        $this->container['percentage'] = $percentage;
 
         return $this;
     }
 
     /**
-     * Gets phone
+     * Gets total
      *
-     * @return string|null
+     * @return float|null
      */
-    public function getPhone()
+    public function getTotal()
     {
-        return $this->container['phone'];
+        return $this->container['total'];
     }
 
     /**
-     * Sets phone
+     * Sets total
      *
-     * @param string|null $phone phone
+     * @param float|null $total total
      *
      * @return $this
      */
-    public function setPhone($phone)
+    public function setTotal($total)
     {
-        $this->container['phone'] = $phone;
+        $this->container['total'] = $total;
 
         return $this;
     }
 
     /**
-     * Gets web
+     * Gets payed
      *
-     * @return string|null
+     * @return float|null
      */
-    public function getWeb()
+    public function getPayed()
     {
-        return $this->container['web'];
+        return $this->container['payed'];
     }
 
     /**
-     * Sets web
+     * Sets payed
      *
-     * @param string|null $web web
+     * @param float|null $payed payed
      *
      * @return $this
      */
-    public function setWeb($web)
+    public function setPayed($payed)
     {
-        $this->container['web'] = $web;
-
-        return $this;
-    }
-
-    /**
-     * Gets email
-     *
-     * @return string|null
-     */
-    public function getEmail()
-    {
-        return $this->container['email'];
-    }
-
-    /**
-     * Sets email
-     *
-     * @param string|null $email email
-     *
-     * @return $this
-     */
-    public function setEmail($email)
-    {
-        $this->container['email'] = $email;
+        $this->container['payed'] = $payed;
 
         return $this;
     }

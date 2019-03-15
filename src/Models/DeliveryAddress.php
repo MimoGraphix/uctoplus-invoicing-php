@@ -1,6 +1,6 @@
 <?php
 /**
- * Issuer
+ * DeliveryAddress
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \MimoGraphix\Uctoplus\ObjectSerializer;
 
 /**
- * Issuer Class Doc Comment
+ * DeliveryAddress Class Doc Comment
  *
  * @category Class
  * @package  MimoGraphix\Uctoplus
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Issuer implements ModelInterface, ArrayAccess
+class DeliveryAddress implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Issuer implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Issuer';
+    protected static $openAPIModelName = 'DeliveryAddress';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,9 @@ class Issuer implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'name' => 'string',
-        'phone' => 'string',
-        'web' => 'string',
-        'email' => 'string'
+        'street' => 'string',
+        'city' => 'string',
+        'country' => 'string'
     ];
 
     /**
@@ -70,9 +70,9 @@ class Issuer implements ModelInterface, ArrayAccess
       */
     protected static $openAPIFormats = [
         'name' => null,
-        'phone' => null,
-        'web' => null,
-        'email' => null
+        'street' => null,
+        'city' => null,
+        'country' => null
     ];
 
     /**
@@ -103,9 +103,9 @@ class Issuer implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'name' => 'name',
-        'phone' => 'phone',
-        'web' => 'web',
-        'email' => 'email'
+        'street' => 'street',
+        'city' => 'city',
+        'country' => 'country'
     ];
 
     /**
@@ -115,9 +115,9 @@ class Issuer implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'name' => 'setName',
-        'phone' => 'setPhone',
-        'web' => 'setWeb',
-        'email' => 'setEmail'
+        'street' => 'setStreet',
+        'city' => 'setCity',
+        'country' => 'setCountry'
     ];
 
     /**
@@ -127,9 +127,9 @@ class Issuer implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'name' => 'getName',
-        'phone' => 'getPhone',
-        'web' => 'getWeb',
-        'email' => 'getEmail'
+        'street' => 'getStreet',
+        'city' => 'getCity',
+        'country' => 'getCountry'
     ];
 
     /**
@@ -193,9 +193,9 @@ class Issuer implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
-        $this->container['web'] = isset($data['web']) ? $data['web'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
+        $this->container['street'] = isset($data['street']) ? $data['street'] : null;
+        $this->container['city'] = isset($data['city']) ? $data['city'] : null;
+        $this->container['country'] = isset($data['country']) ? $data['country'] : null;
     }
 
     /**
@@ -207,9 +207,6 @@ class Issuer implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -228,7 +225,7 @@ class Issuer implements ModelInterface, ArrayAccess
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -238,7 +235,7 @@ class Issuer implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string $name name
+     * @param string|null $name name
      *
      * @return $this
      */
@@ -250,73 +247,73 @@ class Issuer implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets phone
+     * Gets street
      *
      * @return string|null
      */
-    public function getPhone()
+    public function getStreet()
     {
-        return $this->container['phone'];
+        return $this->container['street'];
     }
 
     /**
-     * Sets phone
+     * Sets street
      *
-     * @param string|null $phone phone
+     * @param string|null $street street
      *
      * @return $this
      */
-    public function setPhone($phone)
+    public function setStreet($street)
     {
-        $this->container['phone'] = $phone;
+        $this->container['street'] = $street;
 
         return $this;
     }
 
     /**
-     * Gets web
+     * Gets city
      *
      * @return string|null
      */
-    public function getWeb()
+    public function getCity()
     {
-        return $this->container['web'];
+        return $this->container['city'];
     }
 
     /**
-     * Sets web
+     * Sets city
      *
-     * @param string|null $web web
+     * @param string|null $city city
      *
      * @return $this
      */
-    public function setWeb($web)
+    public function setCity($city)
     {
-        $this->container['web'] = $web;
+        $this->container['city'] = $city;
 
         return $this;
     }
 
     /**
-     * Gets email
+     * Gets country
      *
      * @return string|null
      */
-    public function getEmail()
+    public function getCountry()
     {
-        return $this->container['email'];
+        return $this->container['country'];
     }
 
     /**
-     * Sets email
+     * Sets country
      *
-     * @param string|null $email email
+     * @param string|null $country 3 letter code of Country [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
      *
      * @return $this
      */
-    public function setEmail($email)
+    public function setCountry($country)
     {
-        $this->container['email'] = $email;
+        $this->container['country'] = $country;
 
         return $this;
     }

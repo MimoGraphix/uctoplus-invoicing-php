@@ -1,6 +1,6 @@
 <?php
 /**
- * InvoiceApi
+ * AddressListApi
  * PHP version 5
  *
  * @category Class
@@ -40,14 +40,14 @@ use MimoGraphix\Uctoplus\HeaderSelector;
 use MimoGraphix\Uctoplus\ObjectSerializer;
 
 /**
- * InvoiceApi Class Doc Comment
+ * AddressListApi Class Doc Comment
  *
  * @category Class
  * @package  MimoGraphix\Uctoplus
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class InvoiceApi
+class AddressListApi
 {
     /**
      * @var ClientInterface
@@ -88,36 +88,36 @@ class InvoiceApi
     }
 
     /**
-     * Operation addInvoice
+     * Operation getAddressById
      *
-     * addInvoice
+     * getAddressById.
      *
-     * @param  \MimoGraphix\Uctoplus\Models\Invoice $invoice Invoice (required)
+     * @param  int $id Address identifier (required)
      *
      * @throws \MimoGraphix\Uctoplus\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MimoGraphix\Uctoplus\Models\Response|\MimoGraphix\Uctoplus\Models\ErrorModel
+     * @return \MimoGraphix\Uctoplus\Models\Address
      */
-    public function addInvoice($invoice)
+    public function getAddressById($id)
     {
-        list($response) = $this->addInvoiceWithHttpInfo($invoice);
+        list($response) = $this->getAddressByIdWithHttpInfo($id);
         return $response;
     }
 
     /**
-     * Operation addInvoiceWithHttpInfo
+     * Operation getAddressByIdWithHttpInfo
      *
-     * addInvoice
+     * getAddressById.
      *
-     * @param  \MimoGraphix\Uctoplus\Models\Invoice $invoice Invoice (required)
+     * @param  int $id Address identifier (required)
      *
      * @throws \MimoGraphix\Uctoplus\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MimoGraphix\Uctoplus\Models\Response|\MimoGraphix\Uctoplus\Models\ErrorModel, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MimoGraphix\Uctoplus\Models\Address, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addInvoiceWithHttpInfo($invoice)
+    public function getAddressByIdWithHttpInfo($id)
     {
-        $request = $this->addInvoiceRequest($invoice);
+        $request = $this->getAddressByIdRequest($id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -150,32 +150,20 @@ class InvoiceApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\MimoGraphix\Uctoplus\Models\Response' === '\SplFileObject') {
+                    if ('\MimoGraphix\Uctoplus\Models\Address' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MimoGraphix\Uctoplus\Models\Response', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 400:
-                    if ('\MimoGraphix\Uctoplus\Models\ErrorModel' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\MimoGraphix\Uctoplus\Models\ErrorModel', []),
+                        ObjectSerializer::deserialize($content, '\MimoGraphix\Uctoplus\Models\Address', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\MimoGraphix\Uctoplus\Models\Response';
+            $returnType = '\MimoGraphix\Uctoplus\Models\Address';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -194,15 +182,7 @@ class InvoiceApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MimoGraphix\Uctoplus\Models\Response',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\MimoGraphix\Uctoplus\Models\ErrorModel',
+                        '\MimoGraphix\Uctoplus\Models\Address',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -213,18 +193,18 @@ class InvoiceApi
     }
 
     /**
-     * Operation addInvoiceAsync
+     * Operation getAddressByIdAsync
      *
-     * addInvoice
+     * getAddressById.
      *
-     * @param  \MimoGraphix\Uctoplus\Models\Invoice $invoice Invoice (required)
+     * @param  int $id Address identifier (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addInvoiceAsync($invoice)
+    public function getAddressByIdAsync($id)
     {
-        return $this->addInvoiceAsyncWithHttpInfo($invoice)
+        return $this->getAddressByIdAsyncWithHttpInfo($id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -233,19 +213,19 @@ class InvoiceApi
     }
 
     /**
-     * Operation addInvoiceAsyncWithHttpInfo
+     * Operation getAddressByIdAsyncWithHttpInfo
      *
-     * addInvoice
+     * getAddressById.
      *
-     * @param  \MimoGraphix\Uctoplus\Models\Invoice $invoice Invoice (required)
+     * @param  int $id Address identifier (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addInvoiceAsyncWithHttpInfo($invoice)
+    public function getAddressByIdAsyncWithHttpInfo($id)
     {
-        $returnType = '\MimoGraphix\Uctoplus\Models\Response';
-        $request = $this->addInvoiceRequest($invoice);
+        $returnType = '\MimoGraphix\Uctoplus\Models\Address';
+        $request = $this->getAddressByIdRequest($id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -282,23 +262,23 @@ class InvoiceApi
     }
 
     /**
-     * Create request for operation 'addInvoice'
+     * Create request for operation 'getAddressById'
      *
-     * @param  \MimoGraphix\Uctoplus\Models\Invoice $invoice Invoice (required)
+     * @param  int $id Address identifier (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function addInvoiceRequest($invoice)
+    protected function getAddressByIdRequest($id)
     {
-        // verify the required parameter 'invoice' is set
-        if ($invoice === null || (is_array($invoice) && count($invoice) === 0)) {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $invoice when calling addInvoice'
+                'Missing the required parameter $id when calling getAddressById'
             );
         }
 
-        $resourcePath = '/invoice/add';
+        $resourcePath = '/address-list/{id}/get';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -306,12 +286,17 @@ class InvoiceApi
         $multipart = false;
 
 
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
 
         // body params
         $_tempBody = null;
-        if (isset($invoice)) {
-            $_tempBody = $invoice;
-        }
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
@@ -320,7 +305,7 @@ class InvoiceApi
         } else {
             $headers = $this->headerSelector->selectHeaders(
                 ['application/json'],
-                ['application/json']
+                []
             );
         }
 
@@ -372,7 +357,7 @@ class InvoiceApi
 
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
-            'POST',
+            'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -380,38 +365,34 @@ class InvoiceApi
     }
 
     /**
-     * Operation addPaymentToInvoice
+     * Operation getAddressList
      *
-     * addPaymentToInvoice
+     * getAddressList
      *
-     * @param  int $id Invoice identifier (required)
-     * @param  \MimoGraphix\Uctoplus\Models\Payment $payment Payment (required)
      *
      * @throws \MimoGraphix\Uctoplus\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \MimoGraphix\Uctoplus\Models\Response|\MimoGraphix\Uctoplus\Models\ErrorModel
+     * @return \MimoGraphix\Uctoplus\Models\Address[]
      */
-    public function addPaymentToInvoice($id, $payment)
+    public function getAddressList()
     {
-        list($response) = $this->addPaymentToInvoiceWithHttpInfo($id, $payment);
+        list($response) = $this->getAddressListWithHttpInfo();
         return $response;
     }
 
     /**
-     * Operation addPaymentToInvoiceWithHttpInfo
+     * Operation getAddressListWithHttpInfo
      *
-     * addPaymentToInvoice
+     * getAddressList
      *
-     * @param  int $id Invoice identifier (required)
-     * @param  \MimoGraphix\Uctoplus\Models\Payment $payment Payment (required)
      *
      * @throws \MimoGraphix\Uctoplus\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \MimoGraphix\Uctoplus\Models\Response|\MimoGraphix\Uctoplus\Models\ErrorModel, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \MimoGraphix\Uctoplus\Models\Address[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function addPaymentToInvoiceWithHttpInfo($id, $payment)
+    public function getAddressListWithHttpInfo()
     {
-        $request = $this->addPaymentToInvoiceRequest($id, $payment);
+        $request = $this->getAddressListRequest();
 
         try {
             $options = $this->createHttpClientOption();
@@ -444,32 +425,20 @@ class InvoiceApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\MimoGraphix\Uctoplus\Models\Response' === '\SplFileObject') {
+                    if ('\MimoGraphix\Uctoplus\Models\Address[]' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\MimoGraphix\Uctoplus\Models\Response', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 400:
-                    if ('\MimoGraphix\Uctoplus\Models\ErrorModel' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\MimoGraphix\Uctoplus\Models\ErrorModel', []),
+                        ObjectSerializer::deserialize($content, '\MimoGraphix\Uctoplus\Models\Address[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\MimoGraphix\Uctoplus\Models\Response';
+            $returnType = '\MimoGraphix\Uctoplus\Models\Address[]';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -488,15 +457,7 @@ class InvoiceApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\MimoGraphix\Uctoplus\Models\Response',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\MimoGraphix\Uctoplus\Models\ErrorModel',
+                        '\MimoGraphix\Uctoplus\Models\Address[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -507,19 +468,17 @@ class InvoiceApi
     }
 
     /**
-     * Operation addPaymentToInvoiceAsync
+     * Operation getAddressListAsync
      *
-     * addPaymentToInvoice
+     * getAddressList
      *
-     * @param  int $id Invoice identifier (required)
-     * @param  \MimoGraphix\Uctoplus\Models\Payment $payment Payment (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addPaymentToInvoiceAsync($id, $payment)
+    public function getAddressListAsync()
     {
-        return $this->addPaymentToInvoiceAsyncWithHttpInfo($id, $payment)
+        return $this->getAddressListAsyncWithHttpInfo()
             ->then(
                 function ($response) {
                     return $response[0];
@@ -528,20 +487,18 @@ class InvoiceApi
     }
 
     /**
-     * Operation addPaymentToInvoiceAsyncWithHttpInfo
+     * Operation getAddressListAsyncWithHttpInfo
      *
-     * addPaymentToInvoice
+     * getAddressList
      *
-     * @param  int $id Invoice identifier (required)
-     * @param  \MimoGraphix\Uctoplus\Models\Payment $payment Payment (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addPaymentToInvoiceAsyncWithHttpInfo($id, $payment)
+    public function getAddressListAsyncWithHttpInfo()
     {
-        $returnType = '\MimoGraphix\Uctoplus\Models\Response';
-        $request = $this->addPaymentToInvoiceRequest($id, $payment);
+        $returnType = '\MimoGraphix\Uctoplus\Models\Address[]';
+        $request = $this->getAddressListRequest();
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -578,30 +535,16 @@ class InvoiceApi
     }
 
     /**
-     * Create request for operation 'addPaymentToInvoice'
+     * Create request for operation 'getAddressList'
      *
-     * @param  int $id Invoice identifier (required)
-     * @param  \MimoGraphix\Uctoplus\Models\Payment $payment Payment (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function addPaymentToInvoiceRequest($id, $payment)
+    protected function getAddressListRequest()
     {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling addPaymentToInvoice'
-            );
-        }
-        // verify the required parameter 'payment' is set
-        if ($payment === null || (is_array($payment) && count($payment) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $payment when calling addPaymentToInvoice'
-            );
-        }
 
-        $resourcePath = '/invoice/{id}/pay';
+        $resourcePath = '/address-list';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -609,314 +552,6 @@ class InvoiceApi
         $multipart = false;
 
 
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-        if (isset($payment)) {
-            $_tempBody = $payment;
-        }
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
-            } else {
-                $httpBody = $_tempBody;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
-        if ($apiKey !== null) {
-            $headers['api_key'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getInvoice
-     *
-     * getInvoice
-     *
-     * @param  string $id Invoice identifier (required)
-     *
-     * @throws \MimoGraphix\Uctoplus\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return \MimoGraphix\Uctoplus\Models\Response|\MimoGraphix\Uctoplus\Models\ErrorModel
-     */
-    public function getInvoice($id)
-    {
-        list($response) = $this->getInvoiceWithHttpInfo($id);
-        return $response;
-    }
-
-    /**
-     * Operation getInvoiceWithHttpInfo
-     *
-     * getInvoice
-     *
-     * @param  string $id Invoice identifier (required)
-     *
-     * @throws \MimoGraphix\Uctoplus\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of \MimoGraphix\Uctoplus\Models\Response|\MimoGraphix\Uctoplus\Models\ErrorModel, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getInvoiceWithHttpInfo($id)
-    {
-        $request = $this->getInvoiceRequest($id);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            $responseBody = $response->getBody();
-            switch($statusCode) {
-                case 200:
-                    if ('\MimoGraphix\Uctoplus\Models\Response' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\MimoGraphix\Uctoplus\Models\Response', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                case 400:
-                    if ('\MimoGraphix\Uctoplus\Models\ErrorModel' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\MimoGraphix\Uctoplus\Models\ErrorModel', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\MimoGraphix\Uctoplus\Models\Response';
-            $responseBody = $response->getBody();
-            if ($returnType === '\SplFileObject') {
-                $content = $responseBody; //stream goes to serializer
-            } else {
-                $content = $responseBody->getContents();
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\MimoGraphix\Uctoplus\Models\Response',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\MimoGraphix\Uctoplus\Models\ErrorModel',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getInvoiceAsync
-     *
-     * getInvoice
-     *
-     * @param  string $id Invoice identifier (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getInvoiceAsync($id)
-    {
-        return $this->getInvoiceAsyncWithHttpInfo($id)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getInvoiceAsyncWithHttpInfo
-     *
-     * getInvoice
-     *
-     * @param  string $id Invoice identifier (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getInvoiceAsyncWithHttpInfo($id)
-    {
-        $returnType = '\MimoGraphix\Uctoplus\Models\Response';
-        $request = $this->getInvoiceRequest($id);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    $responseBody = $response->getBody();
-                    if ($returnType === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = $responseBody->getContents();
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getInvoice'
-     *
-     * @param  string $id Invoice identifier (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function getInvoiceRequest($id)
-    {
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getInvoice'
-            );
-        }
-
-        $resourcePath = '/invoice/{id}/get';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
 
         // body params
         $_tempBody = null;
