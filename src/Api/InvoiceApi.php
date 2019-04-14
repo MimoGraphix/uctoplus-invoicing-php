@@ -354,9 +354,9 @@ class InvoiceApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
+        $apiKey = $this->config->getApiKeyWithPrefix('api-key');
         if ($apiKey !== null) {
-            $headers['api_key'] = $apiKey;
+            $headers['api-key'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -665,9 +665,9 @@ class InvoiceApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
+        $apiKey = $this->config->getApiKeyWithPrefix('api-key');
         if ($apiKey !== null) {
-            $headers['api_key'] = $apiKey;
+            $headers['api-key'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -962,9 +962,9 @@ class InvoiceApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
+        $apiKey = $this->config->getApiKeyWithPrefix('api-key');
         if ($apiKey !== null) {
-            $headers['api_key'] = $apiKey;
+            $headers['api-key'] = $apiKey;
         }
 
         $defaultHeaders = [];

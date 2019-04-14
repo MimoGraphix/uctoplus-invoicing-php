@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **theme** | [**\MimoGraphix\Uctoplus\Models\Theme**](Theme.md) |  | [optional] 
 **logo_version** | **int** | ID from [Moje Účto+](http://moje.uctoplus.sk/) | [optional] 
 **signature_version** | **int** | ID from [Moje Účto+](http://moje.uctoplus.sk/) | [optional] 
+**template_id** | **int** | ID from [Moje Účto+](http://moje.uctoplus.sk/) | [optional] 
 **delivery_type** | **int** | ID from [Moje Účto+](http://moje.uctoplus.sk/) | [optional] 
 **payment_type** | **int** | ID from [Moje Účto+](http://moje.uctoplus.sk/) | 
 **currency2** | [**\MimoGraphix\Uctoplus\Models\InvoiceCurrency2**](InvoiceCurrency2.md) |  | [optional] 

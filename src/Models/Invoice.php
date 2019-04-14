@@ -78,6 +78,7 @@ class Invoice implements ModelInterface, ArrayAccess
         'theme' => '\MimoGraphix\Uctoplus\Models\Theme',
         'logo_version' => 'int',
         'signature_version' => 'int',
+        'template_id' => 'int',
         'delivery_type' => 'int',
         'payment_type' => 'int',
         'currency2' => '\MimoGraphix\Uctoplus\Models\InvoiceCurrency2',
@@ -117,6 +118,7 @@ class Invoice implements ModelInterface, ArrayAccess
         'theme' => null,
         'logo_version' => 'int32',
         'signature_version' => 'int32',
+        'template_id' => 'int32',
         'delivery_type' => 'int32',
         'payment_type' => 'int32',
         'currency2' => null,
@@ -177,6 +179,7 @@ class Invoice implements ModelInterface, ArrayAccess
         'theme' => 'theme',
         'logo_version' => 'logoVersion',
         'signature_version' => 'signatureVersion',
+        'template_id' => 'templateId',
         'delivery_type' => 'deliveryType',
         'payment_type' => 'paymentType',
         'currency2' => 'currency2',
@@ -216,6 +219,7 @@ class Invoice implements ModelInterface, ArrayAccess
         'theme' => 'setTheme',
         'logo_version' => 'setLogoVersion',
         'signature_version' => 'setSignatureVersion',
+        'template_id' => 'setTemplateId',
         'delivery_type' => 'setDeliveryType',
         'payment_type' => 'setPaymentType',
         'currency2' => 'setCurrency2',
@@ -255,6 +259,7 @@ class Invoice implements ModelInterface, ArrayAccess
         'theme' => 'getTheme',
         'logo_version' => 'getLogoVersion',
         'signature_version' => 'getSignatureVersion',
+        'template_id' => 'getTemplateId',
         'delivery_type' => 'getDeliveryType',
         'payment_type' => 'getPaymentType',
         'currency2' => 'getCurrency2',
@@ -367,6 +372,7 @@ class Invoice implements ModelInterface, ArrayAccess
         $this->container['theme'] = isset($data['theme']) ? $data['theme'] : null;
         $this->container['logo_version'] = isset($data['logo_version']) ? $data['logo_version'] : null;
         $this->container['signature_version'] = isset($data['signature_version']) ? $data['signature_version'] : null;
+        $this->container['template_id'] = isset($data['template_id']) ? $data['template_id'] : null;
         $this->container['delivery_type'] = isset($data['delivery_type']) ? $data['delivery_type'] : null;
         $this->container['payment_type'] = isset($data['payment_type']) ? $data['payment_type'] : null;
         $this->container['currency2'] = isset($data['currency2']) ? $data['currency2'] : null;
@@ -947,6 +953,30 @@ class Invoice implements ModelInterface, ArrayAccess
     public function setSignatureVersion($signature_version)
     {
         $this->container['signature_version'] = $signature_version;
+
+        return $this;
+    }
+
+    /**
+     * Gets template_id
+     *
+     * @return int|null
+     */
+    public function getTemplateId()
+    {
+        return $this->container['template_id'];
+    }
+
+    /**
+     * Sets template_id
+     *
+     * @param int|null $template_id ID from [Moje Účto+](http://moje.uctoplus.sk/)
+     *
+     * @return $this
+     */
+    public function setTemplateId($template_id)
+    {
+        $this->container['template_id'] = $template_id;
 
         return $this;
     }

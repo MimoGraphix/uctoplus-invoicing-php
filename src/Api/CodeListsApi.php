@@ -320,9 +320,9 @@ class CodeListsApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
+        $apiKey = $this->config->getApiKeyWithPrefix('api-key');
         if ($apiKey !== null) {
-            $headers['api_key'] = $apiKey;
+            $headers['api-key'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -578,9 +578,9 @@ class CodeListsApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
+        $apiKey = $this->config->getApiKeyWithPrefix('api-key');
         if ($apiKey !== null) {
-            $headers['api_key'] = $apiKey;
+            $headers['api-key'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -836,9 +836,9 @@ class CodeListsApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
+        $apiKey = $this->config->getApiKeyWithPrefix('api-key');
         if ($apiKey !== null) {
-            $headers['api_key'] = $apiKey;
+            $headers['api-key'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1113,9 +1113,9 @@ class CodeListsApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
+        $apiKey = $this->config->getApiKeyWithPrefix('api-key');
         if ($apiKey !== null) {
-            $headers['api_key'] = $apiKey;
+            $headers['api-key'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1371,9 +1371,9 @@ class CodeListsApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
+        $apiKey = $this->config->getApiKeyWithPrefix('api-key');
         if ($apiKey !== null) {
-            $headers['api_key'] = $apiKey;
+            $headers['api-key'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1629,9 +1629,9 @@ class CodeListsApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
+        $apiKey = $this->config->getApiKeyWithPrefix('api-key');
         if ($apiKey !== null) {
-            $headers['api_key'] = $apiKey;
+            $headers['api-key'] = $apiKey;
         }
 
         $defaultHeaders = [];
@@ -1887,9 +1887,267 @@ class CodeListsApi
         }
 
         // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('api_key');
+        $apiKey = $this->config->getApiKeyWithPrefix('api-key');
         if ($apiKey !== null) {
-            $headers['api_key'] = $apiKey;
+            $headers['api-key'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getTemplates
+     *
+     * getTemplates
+     *
+     *
+     * @throws \MimoGraphix\Uctoplus\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \MimoGraphix\Uctoplus\Models\InvoiceTemplate[]
+     */
+    public function getTemplates()
+    {
+        list($response) = $this->getTemplatesWithHttpInfo();
+        return $response;
+    }
+
+    /**
+     * Operation getTemplatesWithHttpInfo
+     *
+     * getTemplates
+     *
+     *
+     * @throws \MimoGraphix\Uctoplus\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \MimoGraphix\Uctoplus\Models\InvoiceTemplate[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getTemplatesWithHttpInfo()
+    {
+        $request = $this->getTemplatesRequest();
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 200:
+                    if ('\MimoGraphix\Uctoplus\Models\InvoiceTemplate[]' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\MimoGraphix\Uctoplus\Models\InvoiceTemplate[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\MimoGraphix\Uctoplus\Models\InvoiceTemplate[]';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\MimoGraphix\Uctoplus\Models\InvoiceTemplate[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getTemplatesAsync
+     *
+     * getTemplates
+     *
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getTemplatesAsync()
+    {
+        return $this->getTemplatesAsyncWithHttpInfo()
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getTemplatesAsyncWithHttpInfo
+     *
+     * getTemplates
+     *
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getTemplatesAsyncWithHttpInfo()
+    {
+        $returnType = '\MimoGraphix\Uctoplus\Models\InvoiceTemplate[]';
+        $request = $this->getTemplatesRequest();
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getTemplates'
+     *
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function getTemplatesRequest()
+    {
+
+        $resourcePath = '/dial/templates';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('api-key');
+        if ($apiKey !== null) {
+            $headers['api-key'] = $apiKey;
         }
 
         $defaultHeaders = [];

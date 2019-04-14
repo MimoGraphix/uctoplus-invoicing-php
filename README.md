@@ -57,10 +57,10 @@ Please follow the [installation procedure](#installation--usage) and then run th
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Configure API key authorization: api_key
-$config = MimoGraphix\Uctoplus\Configuration::getDefaultConfiguration()->setApiKey('api_key', 'YOUR_API_KEY');
+// Configure API key authorization: api-key
+$config = MimoGraphix\Uctoplus\Configuration::getDefaultConfiguration()->setApiKey('api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = MimoGraphix\Uctoplus\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api_key', 'Bearer');
+// $config = MimoGraphix\Uctoplus\Configuration::getDefaultConfiguration()->setApiKeyPrefix('api-key', 'Bearer');
 
 $apiInstance = new MimoGraphix\Uctoplus\Api\AddressListApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
@@ -95,6 +95,7 @@ Class | Method | HTTP request | Description
 *CodeListsApi* | [**getLogos**](docs/Api/CodeListsApi.md#getlogos) | **GET** /dial/logos | getLogos
 *CodeListsApi* | [**getPaymentTypes**](docs/Api/CodeListsApi.md#getpaymenttypes) | **GET** /dial/payment-types | getPaymentTypes
 *CodeListsApi* | [**getSignatures**](docs/Api/CodeListsApi.md#getsignatures) | **GET** /dial/signatures | getSignatures
+*CodeListsApi* | [**getTemplates**](docs/Api/CodeListsApi.md#gettemplates) | **GET** /dial/templates | getTemplates
 *IncommingInvoiceApi* | [**incommingInvoiceAddPost**](docs/Api/IncommingInvoiceApi.md#incomminginvoiceaddpost) | **POST** /incomming-invoice/add | Create Incomming Invoice.
 *IncommingInvoiceApi* | [**incommingInvoiceIdGetGet**](docs/Api/IncommingInvoiceApi.md#incomminginvoiceidgetget) | **GET** /incomming-invoice/{id}/get | Returns Incomming Invoice.
 *InvoiceApi* | [**addInvoice**](docs/Api/InvoiceApi.md#addinvoice) | **POST** /invoice/add | addInvoice
@@ -134,10 +135,10 @@ Class | Method | HTTP request | Description
 ## Documentation For Authorization
 
 
-## api_key
+## api-key
 
 - **Type**: API key
-- **API key parameter name**: api_key
+- **API key parameter name**: api-key
 - **Location**: HTTP header
 
 
