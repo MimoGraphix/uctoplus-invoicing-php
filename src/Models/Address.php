@@ -117,10 +117,10 @@ class Address implements ModelInterface, ArrayAccess
         'street' => 'street',
         'city' => 'city',
         'country' => 'country',
-        'sk_ico' => 'sk_ico',
-        'sk_dic' => 'sk_dic',
+        'sk_ico' => 'skIco',
+        'sk_dic' => 'skDic',
         'vat' => 'vat',
-        'internal_id' => 'internal_id'
+        'internal_id' => 'internalId'
     ];
 
     /**

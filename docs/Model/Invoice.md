@@ -34,6 +34,7 @@ Name | Type | Description | Notes
 **payment** | **object** |  | [optional] 
 **file** | **object** |  | [optional] 
 **moje_uctoplus_url** | **string** |  | [optional] 
+**moje_uctoplus_add_url** | **string** |  | [optional] 
 **summary** | **object** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

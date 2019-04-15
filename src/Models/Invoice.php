@@ -88,6 +88,7 @@ class Invoice implements ModelInterface, ArrayAccess
         'payment' => 'object',
         'file' => 'object',
         'moje_uctoplus_url' => 'string',
+        'moje_uctoplus_add_url' => 'string',
         'summary' => 'object'
     ];
 
@@ -128,6 +129,7 @@ class Invoice implements ModelInterface, ArrayAccess
         'payment' => null,
         'file' => null,
         'moje_uctoplus_url' => null,
+        'moje_uctoplus_add_url' => null,
         'summary' => null
     ];
 
@@ -189,6 +191,7 @@ class Invoice implements ModelInterface, ArrayAccess
         'payment' => 'payment',
         'file' => 'file',
         'moje_uctoplus_url' => 'mojeUctoplusUrl',
+        'moje_uctoplus_add_url' => 'mojeUctoplusAddUrl',
         'summary' => 'summary'
     ];
 
@@ -229,6 +232,7 @@ class Invoice implements ModelInterface, ArrayAccess
         'payment' => 'setPayment',
         'file' => 'setFile',
         'moje_uctoplus_url' => 'setMojeUctoplusUrl',
+        'moje_uctoplus_add_url' => 'setMojeUctoplusAddUrl',
         'summary' => 'setSummary'
     ];
 
@@ -269,6 +273,7 @@ class Invoice implements ModelInterface, ArrayAccess
         'payment' => 'getPayment',
         'file' => 'getFile',
         'moje_uctoplus_url' => 'getMojeUctoplusUrl',
+        'moje_uctoplus_add_url' => 'getMojeUctoplusAddUrl',
         'summary' => 'getSummary'
     ];
 
@@ -382,6 +387,7 @@ class Invoice implements ModelInterface, ArrayAccess
         $this->container['payment'] = isset($data['payment']) ? $data['payment'] : null;
         $this->container['file'] = isset($data['file']) ? $data['file'] : null;
         $this->container['moje_uctoplus_url'] = isset($data['moje_uctoplus_url']) ? $data['moje_uctoplus_url'] : null;
+        $this->container['moje_uctoplus_add_url'] = isset($data['moje_uctoplus_add_url']) ? $data['moje_uctoplus_add_url'] : null;
         $this->container['summary'] = isset($data['summary']) ? $data['summary'] : null;
     }
 
@@ -1193,6 +1199,30 @@ class Invoice implements ModelInterface, ArrayAccess
     public function setMojeUctoplusUrl($moje_uctoplus_url)
     {
         $this->container['moje_uctoplus_url'] = $moje_uctoplus_url;
+
+        return $this;
+    }
+
+    /**
+     * Gets moje_uctoplus_add_url
+     *
+     * @return string|null
+     */
+    public function getMojeUctoplusAddUrl()
+    {
+        return $this->container['moje_uctoplus_add_url'];
+    }
+
+    /**
+     * Sets moje_uctoplus_add_url
+     *
+     * @param string|null $moje_uctoplus_add_url moje_uctoplus_add_url
+     *
+     * @return $this
+     */
+    public function setMojeUctoplusAddUrl($moje_uctoplus_add_url)
+    {
+        $this->container['moje_uctoplus_add_url'] = $moje_uctoplus_add_url;
 
         return $this;
     }

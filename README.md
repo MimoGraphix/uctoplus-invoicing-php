@@ -68,13 +68,13 @@ $apiInstance = new MimoGraphix\Uctoplus\Api\AddressListApi(
     new GuzzleHttp\Client(),
     $config
 );
-$id = 56; // int | Address identifier
+$address = new \MimoGraphix\Uctoplus\Models\Address(); // \MimoGraphix\Uctoplus\Models\Address | Address
 
 try {
-    $result = $apiInstance->getAddressById($id);
+    $result = $apiInstance->addAddress($address);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AddressListApi->getAddressById: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AddressListApi->addAddress: ', $e->getMessage(), PHP_EOL;
 }
 
 ?>
@@ -86,7 +86,9 @@ All URIs are relative to *https://moje.uctoplus.sk/api/v2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AddressListApi* | [**addAddress**](docs/Api/AddressListApi.md#addaddress) | **POST** /address-list/add | addAddress
 *AddressListApi* | [**getAddressById**](docs/Api/AddressListApi.md#getaddressbyid) | **GET** /address-list/{id}/get | getAddressById.
+*AddressListApi* | [**getAddressByInternalId**](docs/Api/AddressListApi.md#getaddressbyinternalid) | **GET** /address-list/{id}/get-by-internal-id | getAddressByInternalId.
 *AddressListApi* | [**getAddressList**](docs/Api/AddressListApi.md#getaddresslist) | **GET** /address-list | getAddressList
 *CodeListsApi* | [**getCountries**](docs/Api/CodeListsApi.md#getcountries) | **GET** /dial/global/countries | getCountries
 *CodeListsApi* | [**getCurrencies**](docs/Api/CodeListsApi.md#getcurrencies) | **GET** /dial/global/currencies | getCurrencies

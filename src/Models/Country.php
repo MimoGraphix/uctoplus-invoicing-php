@@ -277,7 +277,7 @@ class Country implements ModelInterface, ArrayAccess
     /**
      * Sets code3
      *
-     * @param string|null $code3 Currency of invoice, format corresponds to [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html)
+     * @param string|null $code3 Country format corresponds to [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html)
      *
      * @return $this
      */

@@ -114,8 +114,8 @@ class InvoiceItem implements ModelInterface, ArrayAccess
         'name' => 'name',
         'description' => 'description',
         'quantity' => 'quantity',
-        'price_without_tax' => 'price_without_tax',
-        'tax_percentage' => 'tax_percentage',
+        'price_without_tax' => 'priceWithoutTax',
+        'tax_percentage' => 'taxPercentage',
         'type' => 'type',
         'discount' => 'discount'
     ];
