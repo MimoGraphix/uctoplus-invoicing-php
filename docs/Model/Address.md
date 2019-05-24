@@ -1,6 +1,7 @@
-# Address
+# # Address
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] 
@@ -13,6 +14,6 @@ Name | Type | Description | Notes
 **vat** | **string** |  | [optional] 
 **internal_id** | **int** | Internal system ID, contact address can be paired with ID in your system and internal_id in Moje Účto+ | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
 
